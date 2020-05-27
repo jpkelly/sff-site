@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Text, Anchor, Grid, Nav } from 'grommet';
+import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav } from 'grommet';
+import { Text } from "../components/Text";
+import { Anchor } from "../components/Anchor";
 import { normalizeColor } from 'grommet/utils';
 import { rgba } from 'polished';
 import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
 import { deepMerge } from "grommet/utils";
 import { Link } from "react-router-dom";
-import './App.css';
-import logo from './sfflogo.svg';
+import '../App.css';
+import logo from '../sfflogo.svg';
 
-import SFFtheme from './Theme.js';
+import SFFtheme from '../Theme.js';
 
 
 
@@ -123,13 +125,27 @@ function App() {
         <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }}>
           <Box primary flex align='center' justify='center' background='background-back'>
             <Box secondary
-              flex
-              border={{ color: 'red' }}
+                  flex={true}
+                  align='center'
+                  width='95%'
+                  pad={{ horizontal: '2px', vertical: '2px' }}
+                  background='red'
+                >  
+              <Box primary
+              flex={true}
+              // border={{ color: 'red' }}
               align='center'
-              width='95%'
+              width='100%'
+            >  
+
+                <Box primary // MAIN CONTENT BOX
+              flex={true}
+              // border={{ color: 'green' }}
+              align='center'
+              width='100%'
               overflow={{ horizontal: 'hidden' }}
-              pad={{ horizontal: '5%' }}
-              background='background-back'
+              pad={{ horizontal: '15px' }}
+              background='black'
               >
               <Box primary
                 border={{ color: 'black' }}
@@ -138,16 +154,11 @@ function App() {
                 background='background-back'
               >
                 <img src={logo} className="logo-image" alt="Logo" />
+                <h1>Projects</h1>
                 <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
-                  At Studio Firefly, we never stop innovating. During the “Great Pause” we have pivoted our entire staff to join forces with our sister company, satoriteller. We don't love any of the virtual platforms that we've seen because they fail to produce a sense of community and a level of engagement that a live event creates. 
+                   CONTENT NEEDED
                 </Paragraph>
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
-                  So, using our internal resources, we decided to build our own. While we aren't advocating that we can ever replicate or replace the experience of a live show, we think we can come closer to making the digital experience as compelling as the live experience. After all, at Studio Firefly, we are all about wonderment. 
-                </Paragraph>
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
-                   More coming in the next few months, with a launch and full Digital Event Experience Demo coming this July, 2020. In the meantime, here's a sneak peek at what our designers, coders, producers, and technicians have been working on:
-                </Paragraph>
-                <Button primary variant="outlined" label='vevomo.com' alignSelf='start' />
+                {/* <Button primary variant="outlined" label='vevomo.com' alignSelf='start' /> */}
 
                 <Box primary>
                   <ResponsiveGrid primary
@@ -157,7 +168,7 @@ function App() {
                     areas={areas}
                     margin={{ horizontal: 'none', vertical: 'medium' }}
                   >
-                    <Box 
+                    <Box primary
                       gridArea="header"
                       // background="black"
                       border='left'{...{ color: 'light-1' }}
@@ -170,7 +181,7 @@ function App() {
                       Sausalito, CA 94965
                       </Anchor>
                     </Box>
-                    <Box
+                    <Box primary
                       gridArea="test"
                       // background="black"
                       border='left'{...{ color: 'neutral-3' }}
@@ -181,7 +192,7 @@ function App() {
                       <Anchor href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
                       <Anchor href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
                     </Box>
-                    <Box
+                    <Box primary
                       gridArea="test1"
                       // background="black"
                       border='left'{...{ color: 'neutral-4' }}
@@ -189,7 +200,7 @@ function App() {
                       align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Nav  direction="row" background="background-back" pad="xsmall">
+                      <Nav primary direction="row" background="background-back" pad="xsmall">
                           <Anchor  icon={<Instagram />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} >TEST</Anchor>
                           <Anchor  icon={<Facebook />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
                           <Anchor  icon={<Linkedin />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
@@ -200,6 +211,9 @@ function App() {
                 
               </Box> 
             </Box> 
+
+              </Box>
+            </Box>
             <Footer primary background="background-back" pad="medium">
               <Text size='xsmall'>Copyright &copy; 2020 Studio Firefly</Text>
               {/* <Anchor size='xsmall' label="About" /> */}
@@ -208,7 +222,7 @@ function App() {
 
           {(!showSidebar || size !== 'small') ? (
             <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar}>
-            <Box 
+            <Box primary
               flex
               width='xsmall'
               background='background-back'
@@ -217,16 +231,16 @@ function App() {
               align='start'
               justify='start'
             >
-              <Nav background="background-back"  gap="small">
-                <Anchor href="/" alignSelf='start' label="Main" >Main</Anchor>
-                <Anchor href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
-                <Anchor href="/about" alignSelf='start' label="About">About</Anchor>
+              <Nav primary background="background-back" gap="small">
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
             </Box>
           </Collapsible>
           ): (
             <Layer>
-              <Box 
+              <Box primary
               background=''
               tag='header'
               justify='center'
@@ -238,7 +252,7 @@ function App() {
                 onClick={() => setShowSidebar(false)}
               />
               </Box>
-              <Box 
+              <Box primary
                 fill
                 background='background-back'
                 align='center'

@@ -1,31 +1,15 @@
 import React, { useState } from "react";
 import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Text, Anchor, Grid, Nav } from 'grommet';
-import { normalizeColor } from 'grommet/utils';
-import { rgba } from 'polished';
+// import { normalizeColor } from 'grommet/utils';
+// import { rgba } from 'polished';
 import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
 import { deepMerge } from "grommet/utils";
 import { Link } from "react-router-dom";
-import './App.css';
-import logo from './sfflogo.svg';
+import '../App.css';
+import logo from '../sfflogo.svg';
 
-import SFFtheme from './Theme.js';
-
-
-
-const AppBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='background-back'
-    pad={{ left: 'medium', right: 'small', vertical: 'none' }}
-    elevation='none'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-);
+import SFFtheme from '../Theme.js';
 
 // Grid setup
 const columns = {
@@ -105,23 +89,16 @@ const ResponsiveGrid = ({
   </ResponsiveContext.Consumer>
 );
 
-function App() {
-  const [isDark, setIsDark] = useState(false);
+function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
-    <Grommet theme={SFFtheme} themeMode={isDark ? 'light' : 'dark'} full>
+    <Grommet theme={SFFtheme} full>
     <ResponsiveContext.Consumer>
     {size => (
       <Box primary fill>
-        <AppBar primary>
-          <Heading level='3' margin='none'></Heading>
-          <Button secondary
-            icon={<Menu />}
-            onClick={() => setShowSidebar(!showSidebar)}
-          />
-        </AppBar>
+        
         <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }}>
-          <Box primary flex align='center' justify='center' background='background-back'>
+          <Box primary flex align='center' justify='center' background='black'>
             <Box secondary
               flex
               border={{ color: 'red' }}
@@ -129,17 +106,17 @@ function App() {
               width='95%'
               overflow={{ horizontal: 'hidden' }}
               pad={{ horizontal: '5%' }}
-              background='background-back'
+              background='black'
               >
               <Box primary
                 border={{ color: 'black' }}
                 align='left'
                 width={{ min: '200px', max: '750px' }}
-                background='background-back'
+                background='black'
               >
                 <img src={logo} className="logo-image" alt="Logo" />
                 <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
-                  At Studio Firefly, we never stop innovating. During the “Great Pause” we have pivoted our entire staff to join forces with our sister company, satoriteller. We don't love any of the virtual platforms that we've seen because they fail to produce a sense of community and a level of engagement that a live event creates. 
+                  SIDEBAR 
                 </Paragraph>
                 <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
                   So, using our internal resources, we decided to build our own. While we aren't advocating that we can ever replicate or replace the experience of a live show, we think we can come closer to making the digital experience as compelling as the live experience. After all, at Studio Firefly, we are all about wonderment. 
@@ -189,7 +166,7 @@ function App() {
                       align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Nav  direction="row" background="background-back" pad="xsmall">
+                      <Nav  direction="row" background="black" pad="xsmall">
                           <Anchor  icon={<Instagram />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} >TEST</Anchor>
                           <Anchor  icon={<Facebook />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
                           <Anchor  icon={<Linkedin />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
@@ -200,10 +177,7 @@ function App() {
                 
               </Box> 
             </Box> 
-            <Footer primary background="background-back" pad="medium">
-              <Text size='xsmall'>Copyright &copy; 2020 Studio Firefly</Text>
-              {/* <Anchor size='xsmall' label="About" /> */}
-            </Footer>
+            
           </Box>
 
           {(!showSidebar || size !== 'small') ? (
@@ -211,13 +185,13 @@ function App() {
             <Box 
               flex
               width='xsmall'
-              background='background-back'
+              background='black'
               border='right'
-              elevation='none'
+              elevation='small'
               align='start'
               justify='start'
             >
-              <Nav background="background-back"  gap="small">
+              <Nav background="black"  gap="small">
                 <Anchor href="/" alignSelf='start' label="Main" >Main</Anchor>
                 <Anchor href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                 <Anchor href="/about" alignSelf='start' label="About">About</Anchor>
@@ -240,7 +214,7 @@ function App() {
               </Box>
               <Box 
                 fill
-                background='background-back'
+                background=''
                 align='center'
                 justify='center'
               >
@@ -256,4 +230,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sidebar;

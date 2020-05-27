@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Text, Anchor, Grid, Nav } from 'grommet';
+import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav } from 'grommet';
+import { Text } from "../components/Text";
+import { Anchor } from "../components/Anchor";
 import { normalizeColor } from 'grommet/utils';
 import { rgba } from 'polished';
 import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
-// import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { deepMerge } from "grommet/utils";
 import { Link } from "react-router-dom";
-import './App.css';
-import logo from './sfflogo.svg';
+import '../App.css';
+import logo from '../sfflogo.svg';
 
-import SFFtheme from './Theme.js';
+import SFFtheme from '../Theme.js';
 
 
 
@@ -120,17 +122,38 @@ function App() {
             onClick={() => setShowSidebar(!showSidebar)}
           />
         </AppBar>
-        <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }}>
+        <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }} >
           <Box primary flex align='center' justify='center' background='background-back'>
+
+
+
             <Box secondary
-              flex
-              border={{ color: 'red' }}
+                flex={true}
+                align='center'
+                width='95%'
+                pad={{ horizontal: '2px', vertical: '2px' }}
+                background='red'
+              >  
+              <Box primary
+              flex={true}
+              // border={{ color: 'red' }}
               align='center'
-              width='95%'
+              width='100%'
+            >  
+
+
+
+              <Box primary // MAIN CONTENT BOX
+              flex={true}
+              // border={{ color: 'green' }}
+              align='center'
+              width='100%'
               overflow={{ horizontal: 'hidden' }}
-              pad={{ horizontal: '5%' }}
-              background='background-back'
+              pad={{ horizontal: '15px' }}
+              background='black'
               >
+
+                
               <Box primary
                 border={{ color: 'black' }}
                 align='left'
@@ -147,7 +170,7 @@ function App() {
                 <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
                    More coming in the next few months, with a launch and full Digital Event Experience Demo coming this July, 2020. In the meantime, here's a sneak peek at what our designers, coders, producers, and technicians have been working on:
                 </Paragraph>
-                <Button primary variant="outlined" label='vevomo.com' alignSelf='start' />
+                <Button margin={{ horizontal: 'none', vertical: 'medium' }} primary variant="outlined" label='vevomo.com' alignSelf='start' />
 
                 <Box primary>
                   <ResponsiveGrid primary
@@ -155,9 +178,9 @@ function App() {
                     columns={columns}
                     gap="small"
                     areas={areas}
-                    margin={{ horizontal: 'none', vertical: 'medium' }}
+                    margin={{ horizontal: 'none', vertical: 'xlarge' }}
                   >
-                    <Box 
+                    <Box primary
                       gridArea="header"
                       // background="black"
                       border='left'{...{ color: 'light-1' }}
@@ -165,12 +188,12 @@ function App() {
                       align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Anchor href="https://goo.gl/maps/59mHnN4Bp3soz3Hb8">
+                      <Anchor hoverColor="#007fff" href="https://goo.gl/maps/59mHnN4Bp3soz3Hb8">
                       480 Gate 5 Road #104<br></br>
                       Sausalito, CA 94965
                       </Anchor>
                     </Box>
-                    <Box
+                    <Box primary
                       gridArea="test"
                       // background="black"
                       border='left'{...{ color: 'neutral-3' }}
@@ -178,10 +201,10 @@ function App() {
                       align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Anchor href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
-                      <Anchor href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
+                      <Anchor hoverColor="#ff7f00" href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
+                      <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
                     </Box>
-                    <Box
+                    <Box primary
                       gridArea="test1"
                       // background="black"
                       border='left'{...{ color: 'neutral-4' }}
@@ -189,10 +212,10 @@ function App() {
                       align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Nav  direction="row" background="background-back" pad="xsmall">
-                          <Anchor  icon={<Instagram />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} >TEST</Anchor>
-                          <Anchor  icon={<Facebook />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
-                          <Anchor  icon={<Linkedin />} hoverIndicator={{"dark": "light-2", "light": "dark-2"}} />
+                      <Nav primary direction="row" background="background-back" pad="xsmall">
+                          <Anchor  icon={<Instagram />} />
+                          <Anchor  icon={<Facebook />}  />
+                          <Anchor  icon={<Linkedin />}  />
                       </Nav>
                     </Box>
                   </ResponsiveGrid>
@@ -200,6 +223,8 @@ function App() {
                 
               </Box> 
             </Box> 
+            </Box>
+            </Box>
             <Footer primary background="background-back" pad="medium">
               <Text size='xsmall'>Copyright &copy; 2020 Studio Firefly</Text>
               {/* <Anchor size='xsmall' label="About" /> */}
@@ -208,7 +233,7 @@ function App() {
 
           {(!showSidebar || size !== 'small') ? (
             <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar}>
-            <Box 
+            <Box primary
               flex
               width='xsmall'
               background='background-back'
@@ -217,10 +242,10 @@ function App() {
               align='start'
               justify='start'
             >
-              <Nav background="background-back"  gap="small">
-                <Anchor href="/" alignSelf='start' label="Main" >Main</Anchor>
-                <Anchor href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
-                <Anchor href="/about" alignSelf='start' label="About">About</Anchor>
+              <Nav primary background="background-back"  gap="small">
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
             </Box>
           </Collapsible>
