@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav } from 'grommet';
+import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav } from 'grommet';
 import { Text } from "../components/Text";
 import { Anchor } from "../components/Anchor";
 import { normalizeColor } from 'grommet/utils';
@@ -12,8 +12,6 @@ import '../App.css';
 import logo from '../sfflogo.svg';
 
 import SFFtheme from '../Theme.js';
-
-
 
 const AppBar = (props) => (
   <Box
@@ -29,39 +27,41 @@ const AppBar = (props) => (
   />
 );
 
+const today = new Date();
+
 // Grid setup
 const columns = {
-  small: ["auto"],
-  medium: ["auto", "auto"],
+  small: ["small"],
+  medium: ["small"],
   large: ["auto", "auto", "auto"],
   xlarge: ["auto", "auto", "auto"]
 };
 const rows = {
   small: ["xxsmall", "xxsmall", "xxsmall"],
-  medium: ["xxsmall", "xxsmall"],
+  medium: ["xxsmall", "xxsmall", "xxsmall"],
   large: ["xxsmall"],
   xlarge: ["xxsmall"]
 };
 const areas = {
   small: [
-    { name: "header", start: [0, 0], end: [0, 0] },
-    { name: "test", start: [0, 1], end: [0, 1] },
-    { name: "test1", start: [0, 2], end: [0, 2] }
+    { name: "one", start: [0, 0], end: [0, 0] },
+    { name: "two", start: [0, 1], end: [0, 1] },
+    { name: "three", start: [0, 2], end: [0, 2] }
   ],
   medium: [
-    { name: "header", start: [0, 0], end: [1, 0] },
-    { name: "test", start: [0, 1], end: [0, 1] },
-    { name: "test1", start: [1, 1], end: [1, 1] }
+    { name: "one", start: [0, 0], end: [0, 0] },
+    { name: "two", start: [0, 1], end: [0, 1] },
+    { name: "three", start: [0, 2], end: [0, 2] }
   ],
   large: [
-    { name: "header", start: [0, 0], end: [0, 0] },
-    { name: "test", start: [1, 0], end: [1, 0] },
-    { name: "test1", start: [2, 0], end: [2, 0] }
+    { name: "one", start: [0, 0], end: [0, 0] },
+    { name: "two", start: [1, 0], end: [1, 0] },
+    { name: "three", start: [2, 0], end: [2, 0] }
   ],
   xlarge: [
-    { name: "header", start: [0, 0], end: [0, 0] },
-    { name: "test", start: [1, 0], end: [1, 0] },
-    { name: "test1", start: [2, 0], end: [2, 0] }
+    { name: "one", start: [0, 0], end: [0, 0] },
+    { name: "two", start: [1, 0], end: [1, 0] },
+    { name: "three", start: [2, 0], end: [2, 0] }
   ]
 };
 
@@ -156,21 +156,24 @@ function App() {
                 
               <Box primary
                 border={{ color: 'black' }}
-                align='left'
+                // align='left'
                 width={{ min: '200px', max: '750px' }}
                 background='background-back'
               >
+                <Anchor href="https://www.studiofirefly.com">
                 <img src={logo} className="logo-image" alt="Logo" />
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
+                </Anchor>
+
+                <Paragraph size='large' fill={true} margin={{ vertical: '15px' }}>
                   At Studio Firefly, we never stop innovating. During the “Great Pause” we have pivoted our entire staff to join forces with our sister company, satoriteller. We don't love any of the virtual platforms that we've seen because they fail to produce a sense of community and a level of engagement that a live event creates. 
                 </Paragraph>
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
+                <Paragraph size='large' fill={true} margin={{ vertical: '15px' }}>
                   So, using our internal resources, we decided to build our own. While we aren't advocating that we can ever replicate or replace the experience of a live show, we think we can come closer to making the digital experience as compelling as the live experience. After all, at Studio Firefly, we are all about wonderment. 
                 </Paragraph>
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
+                <Paragraph size='large' fill={true} margin={{ vertical: '15px' }}>
                    More coming in the next few months, with a launch and full Digital Event Experience Demo coming this July, 2020. In the meantime, here's a sneak peek at what our designers, coders, producers, and technicians have been working on:
                 </Paragraph>
-                <Button margin={{ horizontal: 'none', vertical: 'medium' }} primary variant="outlined" label='vevomo.com' alignSelf='start' />
+                <Button href="https://vevomo.com" margin={{ horizontal: 'none', vertical: 'medium' }} primary variant="outlined" label='vevomo.com' alignSelf='start' />
 
                 <Box primary>
                   <ResponsiveGrid primary
@@ -181,11 +184,11 @@ function App() {
                     margin={{ horizontal: 'none', vertical: 'xlarge' }}
                   >
                     <Box primary
-                      gridArea="header"
+                      gridArea="one"
                       // background="black"
                       border='left'{...{ color: 'light-1' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Anchor hoverColor="#007fff" href="https://goo.gl/maps/59mHnN4Bp3soz3Hb8">
@@ -194,28 +197,28 @@ function App() {
                       </Anchor>
                     </Box>
                     <Box primary
-                      gridArea="test"
+                      gridArea="two"
                       // background="black"
                       border='left'{...{ color: 'neutral-3' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Anchor hoverColor="#ff7f00" href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
                       <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
                     </Box>
                     <Box primary
-                      gridArea="test1"
+                      gridArea="three"
                       // background="black"
                       border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Nav primary direction="row" background="background-back" pad="xsmall">
-                          <Anchor  icon={<Instagram />} />
-                          <Anchor  icon={<Facebook />}  />
-                          <Anchor  icon={<Linkedin />}  />
+                          <Anchor href="http://instagram.com/bystudiofirefly" icon={<Instagram />}　hoverColor="#ff00ff" />
+                          <Anchor href="http://facebook.com/bystudiofirefly" icon={<Facebook />} hoverColor="#ff00ff"　/>
+                          <Anchor href="http://linkedin.com/company/studiofirefly" icon={<Linkedin />} hoverColor="#ff00ff" />
                       </Nav>
                     </Box>
                   </ResponsiveGrid>
@@ -226,7 +229,7 @@ function App() {
             </Box>
             </Box>
             <Footer primary background="background-back" pad="medium">
-              <Text size='xsmall'>Copyright &copy; 2020 Studio Firefly</Text>
+              <Text size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
               {/* <Anchor size='xsmall' label="About" /> */}
             </Footer>
           </Box>
@@ -251,25 +254,30 @@ function App() {
           </Collapsible>
           ): (
             <Layer>
-              <Box 
-              background=''
+              <Box primary
+              background='black'
               tag='header'
-              justify='center'
+              justify='end'
               align='center'
               direction='row'
             >
-              <Button 
+              <Button secondary
                 icon={<FormClose />}
                 onClick={() => setShowSidebar(false)}
               />
               </Box>
-              <Box 
+              <Box primary
                 fill
-                background='background-back'
+                background='black'
                 align='center'
-                justify='center'
+                justify='start'
               >
-                sidebar
+                <Nav align='center' primary background="background-back"  gap="xlarge">
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                  <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
+                </Nav>
+
               </Box>
             </Layer>
           )}
@@ -282,3 +290,4 @@ function App() {
 }
 
 export default App;
+

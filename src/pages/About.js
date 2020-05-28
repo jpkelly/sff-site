@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav, Image } from 'grommet';
+import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav, Image } from 'grommet';
 import { Text } from "../components/Text";
 import { Anchor } from "../components/Anchor";
 // import { Box } from "../components/Box";
@@ -32,6 +32,9 @@ const AppBar = (props) => (
     {...props}
   />
 );
+
+const today = new Date();
+
 
 // Grid setup
 const columns = {
@@ -210,11 +213,13 @@ function App() {
                 width={{ min: '320px', max: '750px' }}
                 // background='red'
               >
-                <img src={logo} className="logo-image" alt="Logo" />
 
-                
-                <Paragraph size='large' fill='true' margin={{ vertical: '15px' }}>
-                  <h3>We decode visions, craft experiences, and deliver with precision, passion, and joy. We are world builders.</h3>
+                <Anchor href="https://www.studiofirefly.com">
+                  <img src={logo} className="logo-image" alt="Logo" />
+                </Anchor>
+
+                <Paragraph size='large' fill={true} margin={{ vertical: 'none' }}>
+                  <h3 margin="none">We decode visions, craft experiences, and deliver with precision, passion, and joy. We are world builders.</h3>
                 </Paragraph>
 
                 {/* <Image fit='contain' src={require('../img/team/Lisa.jpg')} /> */}
@@ -342,7 +347,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -378,7 +383,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -414,7 +419,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -450,7 +455,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -487,7 +492,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -523,7 +528,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -559,7 +564,7 @@ function App() {
                       // background="black"
                       // border='left'{...{ color: 'neutral-4' }}
                       justify="center"
-                      align="left"
+                      // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
                       <Box primary 
@@ -599,7 +604,7 @@ function App() {
 
             <Footer primary background="background-back" pad="medium">
 
-              <Text size='xsmall'>Copyright &copy; 2020 Studio Firefly</Text>
+              <Text size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
               {/* <Anchor size='xsmall' label="About" /> */}
             </Footer>
           </Box>
@@ -616,7 +621,7 @@ function App() {
               justify='start'
             >
               <Nav primary background="background-back"  gap="small">
-              <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
@@ -625,24 +630,29 @@ function App() {
           ): (
             <Layer>
               <Box primary
-              background=''
+              background='black'
               tag='header'
-              justify='center'
+              justify='end'
               align='center'
               direction='row'
             >
-              <Button 
+              <Button secondary
                 icon={<FormClose />}
                 onClick={() => setShowSidebar(false)}
               />
               </Box>
               <Box primary
                 fill
-                background='background-back'
+                background='black'
                 align='center'
-                justify='center'
+                justify='start'
               >
-                sidebar
+                <Nav align='center' primary background="background-back"  gap="xlarge">
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                  <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
+                </Nav>
+
               </Box>
             </Layer>
           )}

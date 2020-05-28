@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Text as GrommetText } from 'grommet';
 import styled, { css } from 'styled-components';
 // There is a grommet-styles package that exports some theme utilities
