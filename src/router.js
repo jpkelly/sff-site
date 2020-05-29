@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import Header from "./components/Header";
 import Content from "./components/Content";
-import Layout from "./components/Layout";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
-import { Grommet } from "grommet";
+// import Layout from "./components/Layout";
+// import Sidebar from "./components/Sidebar";
+// import Footer from "./components/Footer";
+// import { Grommet } from "grommet";
 import { Home, About, Projects, Test } from "./pages";
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).

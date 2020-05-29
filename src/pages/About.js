@@ -3,17 +3,17 @@ import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, P
 import { Text } from "../components/Text";
 import { Anchor } from "../components/Anchor";
 // import { Box } from "../components/Box";
-import { normalizeColor } from 'grommet/utils';
-import { rgba } from 'polished';
+// import { normalizeColor } from 'grommet/utils';
+// import { rgba } from 'polished';
 import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
-import { deepMerge } from "grommet/utils";
-import { Link } from "react-router-dom";
+// import { deepMerge } from "grommet/utils";
+// import { Link } from "react-router-dom";
 import '../App.css';
 import logo from '../sfflogo.svg';
 
-import lisa from '../img/team/Lisa.jpg';
-import ethan from '../img/team/Ethan.jpg';
+// import lisa from '../img/team/Lisa.jpg';
+// import ethan from '../img/team/Ethan.jpg';
 
 import SFFtheme from '../Theme.js';
 
@@ -96,7 +96,7 @@ const areas = {
   ]
 };
 
-const ResponsiveGrid = ({
+const ResponsiveGridTeam = ({
   children,
   overrideColumns,
   overrideRows,
@@ -138,34 +138,86 @@ const ResponsiveGrid = ({
   </ResponsiveContext.Consumer>
 );
 
-const team = [
-  "Lisa",
-  "Ethan",
-  "Sully",
-  "Reba",
-  "Robin",
-  "Claudia",
-  "Julie",
-  "Paris",
-  "Natalie",
-];
-const listTeamBoxes = team.map(memberName => (
-  <Box
-  height="small" width="small"
-    elevation="large"
-    key={memberName}
-    background="light-3"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    <Heading level={2}>{memberName}</Heading>
-    <Image fit='contain' src={require('../img/team/'+memberName+'.jpg')} />
-  </Box>
-));
+// Footer Grid setup
+const columnsFooter = {
+  small: ["small"],
+  medium: ["auto", "auto", "auto"],
+  large: ["auto", "auto", "auto"],
+  xlarge: ["auto", "auto", "auto"]
+};
+const rowsFooter = {
+  small: ["xxsmall", "xxsmall", "xxsmall"],
+  medium: ["xxsmall"],
+  large: ["xxsmall"],
+  xlarge: ["xxsmall"]
+};
+const areasFooter = {
+  small: [
+    { name: "oneFooter", start: [0, 0], end: [0, 0] },
+    { name: "twoFooter", start: [0, 1], end: [0, 1] },
+    { name: "threeFooter", start: [0, 2], end: [0, 2] }
+  ],
+  medium: [
+    { name: "oneFooter", start: [0, 0], end: [0, 0] },
+    { name: "twoFooter", start: [1, 0], end: [1, 0] },
+    { name: "threeFooter", start: [2, 0], end: [2, 0] }
+  ],
+  large: [
+    { name: "oneFooter", start: [0, 0], end: [0, 0] },
+    { name: "twoFooter", start: [1, 0], end: [1, 0] },
+    { name: "threeFooter", start: [2, 0], end: [2, 0] }
+  ],
+  xlarge: [
+    { name: "oneFooter", start: [0, 0], end: [0, 0] },
+    { name: "twoFooter", start: [1, 0], end: [1, 0] },
+    { name: "threeFooter", start: [2, 0], end: [2, 0] }
+  ]
+};
+const ResponsiveGrid = ({
+  children,
+  overrideColumns,
+  overrideRows,
+  areasFooter,
+  ...props
+}) => (
+  <ResponsiveContext.Consumer>
+    {size => {
+      // take into consideration if not array is sent but a simple string
+      let columnsVal = columnsFooter;
+      if (columnsFooter) {
+        if (columnsFooter[size]) {
+          columnsVal = columnsFooter[size];
+        }
+      }
+
+      let rowsVal = rowsFooter;
+      if (rowsFooter) {
+        if (rowsFooter[size]) {
+          rowsVal = rowsFooter[size];
+        }
+      }
+
+      // also if areas is a simple array not an object of arrays for different sizes
+      let areasVal = areasFooter;
+      if (areasFooter && !Array.isArray(areasFooter)) areasVal = areasFooter[size];
+
+      return (
+        <Grid
+          {...props}
+          areasFooter={!areasVal ? undefined : areasVal}
+          rowsFooter={!rowsVal ? size : rowsVal}
+          columnsFooter={!columnsVal ? size : columnsVal}
+        >
+          {children}
+        </Grid>
+      );
+    }}
+  </ResponsiveContext.Consumer>
+);
+
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <Grommet theme={SFFtheme} themeMode={isDark ? 'light' : 'dark'} full={true}>
@@ -174,10 +226,7 @@ function App() {
       <Box primary fill={true}>
         <AppBar primary>
           <Heading level='3' margin='none'></Heading>
-          <Button secondary
-            icon={<Menu />}
-            onClick={() => setShowSidebar(!showSidebar)}
-          />
+          <Anchor onClick={() => setShowSidebar(!showSidebar)} icon={<Menu />}　hoverColor="#ff00ff" />
         </AppBar>
         <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }}>
           <Box primary flex align='center' justify='center' background='background-back'>
@@ -222,7 +271,7 @@ function App() {
                   <h3 margin="none">We decode visions, craft experiences, and deliver with precision, passion, and joy. We are world builders.</h3>
                 </Paragraph>
 
-                {/* <Image fit='contain' src={require('../img/team/Lisa.jpg')} /> */}
+                {/* <Image fit='contain' src={ '../img/team/Lisa.jpg'} /> */}
                 {/* <Image fit='contain' src={ethan} /> */}
 
               </Box> 
@@ -236,378 +285,440 @@ function App() {
                 
                 // style={{width:'100%', height:20}}/>
               >
-                <ResponsiveGrid primary
-                    rows={rows}
-                    columns={columns}
-                    gap="small"
-                    areas={areas}
-                    margin={{ horizontal: 'none', vertical: 'medium' }}
-                  >
-                    <Box primary
-                      gridArea="one"
-                      flex={false}
-                      overflow="visible"
-                      // height="xsmall" 
-                      // background="black"
-                      // border='left'{...{ color: 'light-1' }}
-                      // justify="center"
-                      // align="center"
-                      // pad={{ horizontal: 'small', vertical: 'small' }}
+                    <ResponsiveGridTeam primary
+                      rows={rows}
+                      columns={columns}
+                      gap="small"
+                      areas={areas}
+                      margin={{ horizontal: 'none', vertical: 'medium' }}
                     >
-                      <Box primary 
+                      <Box primary
+                        gridArea="one"
+                        flex={false}
+                        overflow="visible"
+                        // height="xsmall" 
+                        // background="black"
+                        // border='left'{...{ color: 'light-1' }}
+                        // justify="center"
+                        // align="center"
+                        // pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <Image fit="contain" src={require('../img/team/Lisa.jpg')} />
-                        
+                        <Box primary 
+                        >
+                          <Image fit="contain" src={ require('../img/team/Lisa.jpg')} />
+                          
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Lisa Sato</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Chief Dreamer/Event Strategist</h4>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="medium"
+                        justify="start"
+                        pad={{ horizontal: '20px' }}
+                        // background="red"
+                        // margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <Text>
+                          With 20 years of experience in live events, Lisa has developed a proven event strategy, content development, and creative process. She also has an uncanny ability to push creative beyond rectangular screens, while still approaching a project holistically and maintaining a cohesive message through every aspect of a project. Although she has a passion for creating wonderment, she knows that this cannot be achieved without production excellence, which is why she believes in the importance of empowered producers to manage client relationships. Before founding Studio Firefly, and leading our production team, Lisa was the Chief Dreamer for satoriteller, a multifaceted media arts and production company.
+                          </Text>
+                        </Box>
                       </Box>
                       <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
+                        gridArea="two"
+                        flex={false}
+                        overflow="visible"
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-3' }}
+                        // justify="center"
+                        // align="left"
+                        // pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <h2>Lisa Sato</h2>
+                        <Box primary 
+                        >
+                          <Image fit="contain" src={ require('../img/team/Ethan.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Ethan Hoerneman</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Principal, Chief of Creative</h4>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="medium"
+                        justify="start"
+                        pad={{ horizontal: '20px' }}
+                        // background="red"
+                        // margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <Text>
+                          Ethan has devoted his artistic talents to more than 800 corporate, theatrical, and television productions over the past 20+ years. With a diverse background in production and content design, he ably balances his creative and technical skills to execute excellence on every Studio Firefly project. Ethan has a keen eye for design mixed with a practical approach that ensures every moment of a branding experience is not only compelling and filled with wonderment, but also achievable. Before founding Studio Firefly, and leading our team of designers and artists, Ethan was the founder and Creative Director for Firefly Arts, a media arts and design company.
+                          </Text>
+                        </Box>
                       </Box>
                       <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
+                        gridArea="three"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <h4>Chief Dreamer/Event Strategist</h4>
+                        <Box primary 
+                        // background='redark-1d'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Sully.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Sully Taylor</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>VP, Creative Services</h4>
+                        </Box>
                       </Box>
                       <Box primary
-                      flex={false}
-                      height="medium"
-                      justify="start"
-                      pad={{ horizontal: '20px' }}
-                      // background="red"
-                      // margin={{ horizontal: 'none', vertical: 'none' }}
+                        gridArea="four"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <Text>
-                        With 20 years of experience in live events, Lisa has developed a proven event strategy, content development, and creative process. She also has an uncanny ability to push creative beyond rectangular screens, while still approaching a project holistically and maintaining a cohesive message through every aspect of a project. Although she has a passion for creating wonderment, she knows that this cannot be achieved without production excellence, which is why she believes in the importance of empowered producers to manage client relationships. Before founding Studio Firefly, and leading our production team, Lisa was the Chief Dreamer for satoriteller, a multifaceted media arts and production company.
-                        </Text>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="two"
-                      flex={false}
-                      overflow="visible"
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-3' }}
-                      // justify="center"
-                      // align="left"
-                      // pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      >
-                        <Image fit="contain" src={require('../img/team/Ethan.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Ethan Hoerneman</h2>
+                        <Box primary 
+                        // background='dark-1'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Reba.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Reba Aronne</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>VP, Culture & Operations/Producer</h4>
+                        </Box>
                       </Box>
                       <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
+                        gridArea="five"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <h4>Principal, Chief of Creative</h4>
+                        <Box primary 
+                        // background='dark-1'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Robin.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Robin Harrigan</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Director of Production/Producer</h4>
+                        </Box>
                       </Box>
                       <Box primary
-                      flex={false}
-                      height="medium"
-                      justify="start"
-                      pad={{ horizontal: '20px' }}
-                      // background="red"
-                      // margin={{ horizontal: 'none', vertical: 'none' }}
+                        gridArea="six"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
                       >
-                        <Text>
-                        Ethan has devoted his artistic talents to more than 800 corporate, theatrical, and television productions over the past 20+ years. With a diverse background in production and content design, he ably balances his creative and technical skills to execute excellence on every Studio Firefly project. Ethan has a keen eye for design mixed with a practical approach that ensures every moment of a branding experience is not only compelling and filled with wonderment, but also achievable. Before founding Studio Firefly, and leading our team of designers and artists, Ethan was the founder and Creative Director for Firefly Arts, a media arts and design company.
-                        </Text>
+                        <Box primary 
+                        // background='redark-1d'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Claudia.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Claudia Anaya</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Lead Production Coordinator</h4>
+                        </Box>
                       </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="three"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background='redark-1d'
-                      >
-                        <Image fit="contain" src={require('../img/team/Sully.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Sully Taylor</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>VP, Creative Services</h4>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="four"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background='dark-1'
-                      >
-                        <Image fit="contain" src={require('../img/team/Reba.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Reba Aronne</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>VP, Culture & Operations/Producer</h4>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="five"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background='dark-1'
-                      >
-                        <Image fit="contain" src={require('../img/team/Robin.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Robin Harrigan</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>Director of Production/Producer</h4>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="six"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background='redark-1d'
-                      >
-                        <Image fit="contain" src={require('../img/team/Claudia.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Claudia Anaya</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>Lead Production Coordinator</h4>
-                      </Box>
-                    </Box>
 
-                    <Box primary
-                      gridArea="seven"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
+                      <Box primary
+                        gridArea="seven"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
+                      >
+                        <Box primary 
+                        // background='dark-1'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Julie.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Julie Thompson</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Executive Admin/Coordinator</h4>
+                        </Box>
+                      </Box>
+                      <Box primary
+                        gridArea="eight"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
+                      >
+                        <Box primary 
+                        // background="dark-1"
+                        >
+                          <Image fit="contain" src={ require('../img/team/Paris.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Paris Coyne</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Creative Developer</h4>
+                        </Box>
+                      </Box>
+                      <Box primary
+                        gridArea="nine"
+                        flex={false}
+                        // background="black"
+                        // border='left'{...{ color: 'neutral-4' }}
+                        justify="center"
+                        // align="left"
+                        pad={{ horizontal: 'small', vertical: 'small' }}
+                      >
+                        <Box primary 
+                        // background='dark-1'
+                        >
+                          <Image fit="contain" src={ require('../img/team/Natalie.jpg')} />
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="xxsmall"
+                        justify="center"
+                        align="center"
+                        // background="blue"
+                        pad={{ horizontal: 'none', vertical: 'none' }}
+                        margin={{ horizontal: 'none', vertical: 'none' }}
+                        >
+                          <h2>Natalie Steffen</h2>
+                        </Box>
+                        <Box primary
+                        flex={false}
+                        height="30px"
+                        justify="center"
+                        align="center"
+                        // background="green"
+                        pad={{ bottom: 'medium' }}
+                        >
+                          <h4>Designer</h4>
+                        </Box>
+                      </Box>
+                    </ResponsiveGridTeam>
+
+                    <Box primary ///*** FOOTER */
+                    // border={{ color: 'red' }}
+                    flex={false}
+                    // border={{ color: 'blue' }}
+                    alignSelf="center"
+                    width="750px"
+                    margin={{top: "50px"}}
                     >
-                      <Box primary 
-                      // background='dark-1'
-                      >
-                        <Image fit="contain" src={require('../img/team/Julie.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Julie Thompson</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>Executive Admin/Coordinator</h4>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="eight"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background="dark-1"
-                      >
-                        <Image fit="contain" src={require('../img/team/Paris.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Paris Coyne</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>Creative Developer</h4>
-                      </Box>
-                    </Box>
-                    <Box primary
-                      gridArea="nine"
-                      flex={false}
-                      // background="black"
-                      // border='left'{...{ color: 'neutral-4' }}
-                      justify="center"
-                      // align="left"
-                      pad={{ horizontal: 'small', vertical: 'small' }}
-                    >
-                      <Box primary 
-                      // background='dark-1'
-                      >
-                        <Image fit="contain" src={require('../img/team/Natalie.jpg')} />
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="xxsmall"
-                      justify="center"
-                      align="center"
-                      // background="blue"
-                      pad={{ horizontal: 'none', vertical: 'none' }}
-                      margin={{ horizontal: 'none', vertical: 'none' }}
-                      >
-                        <h2>Natalie Steffen</h2>
-                      </Box>
-                      <Box primary
-                      flex={false}
-                      height="30px"
-                      justify="center"
-                      align="center"
-                      // background="green"
-                      pad={{ bottom: 'medium' }}
-                      >
-                        <h4>Designer</h4>
-                      </Box>
-                    </Box>
-                  </ResponsiveGrid>
-              </Box>
+                        <Box primary 
+                        // border={{ color: 'green' }}
+                        >
+                            {/* <ResponsiveGrid primary
+                            border={{ color: 'red' }}
+                            rowsFooter={rowsFooter}
+                            columnsFooter={columnsFooter}
+                            gap="small"
+                            areasFooter={areasFooter}
+                            margin={{ horizontal: 'none', vertical: 'medium' }}
+                            >
+                                <Box primary 
+                                    gridArea="oneFooter"
+                                    // background="black"
+                                    border='left'{...{ color: 'light-1' }}
+                                    justify="center"
+                                    // align="left"
+                                    pad={{ horizontal: 'small', vertical: 'small' }}
+                                >
+                                    <Anchor hoverColor="#007fff" href="https://goo.gl/maps/59mHnN4Bp3soz3Hb8">
+                                    480 Gate 5 Road #104<br></br>
+                                    Sausalito, CA 94965
+                                    </Anchor>
+                                </Box>
+                                <Box primary
+                                    gridArea="twoFooter"
+                                    // background="black"
+                                    border='left'{...{ color: 'neutral-3' }}
+                                    justify="center"
+                                    // align="left"
+                                    pad={{ horizontal: 'small', vertical: 'small' }}
+                                >
+                                    <Anchor hoverColor="#ff7f00" href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
+                                    <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
+                                </Box>
+                                <Box primary border={{ color: 'red' }}
+                                    gridArea="threeFooter"
+                                    // background="black"
+                                    border='left'{...{ color: '#ffffff' }}
+                                    justify="center"
+                                    // align="left"
+                                    pad={{ horizontal: 'small', vertical: 'small' }}
+                                >
+                                    <Nav primary direction="row" background="background-back" pad="none" gap="none">
+                                        <Anchor href="http://instagram.com/bystudiofirefly" icon={<Instagram />}　hoverColor="#ff00ff" />
+                                        <Anchor href="http://facebook.com/bystudiofirefly" icon={<Facebook />} hoverColor="#ff00ff"　/>
+                                        <Anchor href="http://linkedin.com/company/studiofirefly" icon={<Linkedin />} hoverColor="#ff00ff" />
+                                    </Nav>
+                                </Box>
+                            </ResponsiveGrid> */}
+                            <Footer primary justify="center" pad={{top: "30px", bottom: "15px"}}>
+                                <Text background="red" size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
+                            </Footer>
+                        </Box>
+                    </Box>  
                 
-            </Box> 
-            
-              </Box>
+                </Box>
+              </Box> 
             </Box>
 
-            <Footer primary background="background-back" pad="medium">
+                
 
-              <Text size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
-              {/* <Anchor size='xsmall' label="About" /> */}
-            </Footer>
           </Box>
+
+            <Footer primary background="background-back" pad="18px"></Footer>
+        </Box>
 
           {(!showSidebar || size !== 'small') ? (
             <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar}>
@@ -621,7 +732,7 @@ function App() {
               justify='start'
             >
               <Nav primary background="background-back"  gap="small">
-                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
@@ -648,7 +759,7 @@ function App() {
                 justify='start'
               >
                 <Nav align='center' primary background="background-back"  gap="xlarge">
-                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                   <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                   <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
                 </Nav>

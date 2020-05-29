@@ -81,31 +81,39 @@ const SFFtheme = deepMerge(grommet, {
         font-size: 1.075rem;
         font-weight: 500;
         line-height: normal;
-        min-height: 50px;
+        // min-height: 50px;
   
        ${!props.default && `
-         border-color: rgb(255, 0, 255, 1);
-         color: rgb(255, 0, 255, 0.99);
+       height: 50px;
+       width: 169px;
+       padding-top: 3px;
+       line-height: 42px;
+          border: 0px solid #ff00ff;
+         color: rgb(255, 255, 255, 0.99);
          background-color: #000000;
          :hover {
-          border-color: rgb(0, 0, 0, 1);
-          stroke: rgb(255, 0, 255, 1);
+          color: rgb(255, 0, 255, 1);
+          border: 0px solid #ff00ff;
+          stroke: rgb(255, 255, 255, 0);
           box-shadow: none;
-          background-color: #000000;
+          background-color: #eeeeee;
           }
         `}
         // ${!props.primary && `
         //  border-color: rgb(255, 0, 255, 0.75);
         //  color: rgb(255, 255, 255, 0.99);
         //  :hover {
-        //     color: rgb(0, 0, 0, 0.99);
+        //     color: rgb(1, 1, 1, 0.99);
         //     box-shadow: none;
         //     background-color: #0ff00;
         //   }
         // `}
         ${!props.secondary && `
-          border: 2px solid #ff00ff;
-          color: rgb(255, 255, 255, 0.99);
+          height: 56px;
+          width: 176px;
+          border: 0px solid #ff00ff;
+          color: rgb(255, 255, 255, 1);
+          background-image: conic-gradient(from -45deg, #ff7f00, #ff00ff, #007fff, #00ff00, #ff7f00);
           :hover {
             border: 2px solid #ff00ff;
             color: rgb(0, 0, 0, 0.99);
@@ -167,7 +175,7 @@ const SFFtheme = deepMerge(grommet, {
         ${!props.secondary && `
          
          //border-width: none;
-         border-color: border;
+         border-color: #ffffff;
          color: rgb(255, 255, 255, 1);
          border-width: 2px;
         //  background-image: conic-gradient(from -45deg, #ff7f00, #ff00ff, #007fff, #00ff00, #ff7f00);

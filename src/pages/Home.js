@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav } from 'grommet';
+import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav, Stack } from 'grommet';
 import { Text } from "../components/Text";
 import { Anchor } from "../components/Anchor";
-import { normalizeColor } from 'grommet/utils';
-import { rgba } from 'polished';
+// import { normalizeColor } from 'grommet/utils';
+// import { rgba } from 'polished';
 import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
-import { ThemeProvider } from 'styled-components';
-import { deepMerge } from "grommet/utils";
-import { Link } from "react-router-dom";
+// import { ThemeProvider } from 'styled-components';
+// import { deepMerge } from "grommet/utils";
+// import { Link } from "react-router-dom";
 import '../App.css';
 import logo from '../sfflogo.svg';
 
@@ -29,16 +29,16 @@ const AppBar = (props) => (
 
 const today = new Date();
 
-// Grid setup
-const columns = {
+// Footer Grid setup
+const columnsGrommet = {
   small: ["small"],
-  medium: ["small"],
+  medium: ["auto", "auto", "auto"],
   large: ["auto", "auto", "auto"],
   xlarge: ["auto", "auto", "auto"]
 };
-const rows = {
+const rowsGrommet = {
   small: ["xxsmall", "xxsmall", "xxsmall"],
-  medium: ["xxsmall", "xxsmall", "xxsmall"],
+  medium: ["xxsmall"],
   large: ["xxsmall"],
   xlarge: ["xxsmall"]
 };
@@ -50,8 +50,8 @@ const areas = {
   ],
   medium: [
     { name: "one", start: [0, 0], end: [0, 0] },
-    { name: "two", start: [0, 1], end: [0, 1] },
-    { name: "three", start: [0, 2], end: [0, 2] }
+    { name: "two", start: [1, 0], end: [1, 0] },
+    { name: "three", start: [2, 0], end: [2, 0] }
   ],
   large: [
     { name: "one", start: [0, 0], end: [0, 0] },
@@ -64,7 +64,6 @@ const areas = {
     { name: "three", start: [2, 0], end: [2, 0] }
   ]
 };
-
 const ResponsiveGrid = ({
   children,
   overrideColumns,
@@ -75,17 +74,17 @@ const ResponsiveGrid = ({
   <ResponsiveContext.Consumer>
     {size => {
       // take into consideration if not array is sent but a simple string
-      let columnsVal = columns;
-      if (columns) {
-        if (columns[size]) {
-          columnsVal = columns[size];
+      let columnsVal = columnsGrommet;
+      if (columnsGrommet) {
+        if (columnsGrommet[size]) {
+          columnsVal = columnsGrommet[size];
         }
       }
 
-      let rowsVal = rows;
-      if (rows) {
-        if (rows[size]) {
-          rowsVal = rows[size];
+      let rowsVal = rowsGrommet;
+      if (rowsGrommet) {
+        if (rowsGrommet[size]) {
+          rowsVal = rowsGrommet[size];
         }
       }
 
@@ -108,7 +107,7 @@ const ResponsiveGrid = ({
 );
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <Grommet theme={SFFtheme} themeMode={isDark ? 'light' : 'dark'} full>
@@ -117,10 +116,7 @@ function App() {
       <Box primary fill>
         <AppBar primary>
           <Heading level='3' margin='none'></Heading>
-          <Button secondary
-            icon={<Menu />}
-            onClick={() => setShowSidebar(!showSidebar)}
-          />
+          <Anchor onClick={() => setShowSidebar(!showSidebar)} icon={<Menu />}　hoverColor="#ff00ff" />
         </AppBar>
         <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }} >
           <Box primary flex align='center' justify='center' background='background-back'>
@@ -173,15 +169,23 @@ function App() {
                 <Paragraph size='large' fill={true} margin={{ vertical: '15px' }}>
                    More coming in the next few months, with a launch and full Digital Event Experience Demo coming this July, 2020. In the meantime, here's a sneak peek at what our designers, coders, producers, and technicians have been working on:
                 </Paragraph>
-                <Button href="https://vevomo.com" margin={{ horizontal: 'none', vertical: 'medium' }} primary variant="outlined" label='vevomo.com' alignSelf='start' />
 
-                <Box primary>
+                <Stack >
+                <Button href="https://vevomo.com" margin={{ horizontal: '0px', vertical: '21px' }} primary variant="outlined" label='vevomo.com' alignSelf='start' />
+                <Button href="https://vevomo.com" margin={{ horizontal: '3px', vertical: 'medium' }} secondary variant="outlined" label='vevomo.com' alignSelf='start' />
+                  
+                </Stack>
+
+
+                
+
+                <Box primary  >
                   <ResponsiveGrid primary
-                    rows={rows}
-                    columns={columns}
+                    rows={rowsGrommet}
+                    columns={columnsGrommet}
                     gap="small"
                     areas={areas}
-                    margin={{ horizontal: 'none', vertical: 'xlarge' }}
+                    margin={{ horizontal: 'none', vertical: 'medium' }}
                   >
                     <Box primary
                       gridArea="one"
@@ -210,27 +214,28 @@ function App() {
                     <Box primary
                       gridArea="three"
                       // background="black"
-                      border='left'{...{ color: 'neutral-4' }}
+                      border='left'{...{ color: '#ffffff' }}
                       justify="center"
                       // align="left"
                       pad={{ horizontal: 'small', vertical: 'small' }}
                     >
-                      <Nav primary direction="row" background="background-back" pad="xsmall">
+                      <Nav primary direction="row" background="background-back" pad="none" gap="none">
                           <Anchor href="http://instagram.com/bystudiofirefly" icon={<Instagram />}　hoverColor="#ff00ff" />
                           <Anchor href="http://facebook.com/bystudiofirefly" icon={<Facebook />} hoverColor="#ff00ff"　/>
                           <Anchor href="http://linkedin.com/company/studiofirefly" icon={<Linkedin />} hoverColor="#ff00ff" />
                       </Nav>
                     </Box>
                   </ResponsiveGrid>
+                  <Footer primary justify="center" pad={{top: "30px", bottom: "15px"}}>
+                    <Text background="red" size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
+                  </Footer>
                 </Box>
                 
               </Box> 
             </Box> 
             </Box>
             </Box>
-            <Footer primary background="background-back" pad="medium">
-              <Text size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
-              {/* <Anchor size='xsmall' label="About" /> */}
+            <Footer primary background="background-back" pad="18px">
             </Footer>
           </Box>
 
@@ -246,7 +251,7 @@ function App() {
               justify='start'
             >
               <Nav primary background="background-back"  gap="small">
-                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
@@ -273,7 +278,7 @@ function App() {
                 justify='start'
               >
                 <Nav align='center' primary background="background-back"  gap="xlarge">
-                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                   <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                   <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
                 </Nav>

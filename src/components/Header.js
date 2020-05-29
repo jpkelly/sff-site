@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { grommet, Box, Button, Collapsible, Heading, Grommet, ResponsiveContext, Layer, Paragraph, Footer, Text, Anchor, Grid, Nav } from 'grommet';
+import {  Box, Button, Heading, Grommet, ResponsiveContext } from 'grommet';
 // import { normalizeColor } from 'grommet/utils';
 // import { rgba } from 'polished';
-import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
+import { Menu } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
-import { deepMerge } from "grommet/utils";
-import { Link } from "react-router-dom";
+// import { deepMerge } from "grommet/utils";
+// import { Link } from "react-router-dom";
 import '../App.css';
-import logo from '../sfflogo.svg';
+// import logo from '../sfflogo.svg';
 
 import SFFtheme from '../Theme.js';
 

@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav, Image } from 'grommet';
+import { Grommet, Box, Button, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Nav, Grid } from 'grommet';
 import { Text } from "../components/Text";
 import { Anchor } from "../components/Anchor";
 // import { Box } from "../components/Box";
-import { normalizeColor } from 'grommet/utils';
-import { rgba } from 'polished';
-import { FormClose, Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
+// import { normalizeColor } from 'grommet/utils';
+// import { rgba } from 'polished';
+import { FormClose, Menu, Facebook, Instagram, Linkedin  } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
-import { deepMerge } from "grommet/utils";
-import { Link } from "react-router-dom";
+// import { deepMerge } from "grommet/utils";
+// import { Link } from "react-router-dom";
+
+import Gallery from 'react-photo-gallery';
+// import { photos } from "https://login.studiofirefly.com/img/F8Neb";
+
+/* popout the browser and maximize to see more rows! -> */
+// const BasicRows = () => <Gallery photos={photos} />;
+
 import '../App.css';
 import logo from '../sfflogo.svg';
 
-import lisa from '../img/team/Lisa.jpg';
-import ethan from '../img/team/Ethan.jpg';
+// import lisa from 'https://login.studiofirefly.com/img/team/Lisa.jpg';
+// import ethan from 'https://login.studiofirefly.com/img/team/Ethan.jpg';
 
 import SFFtheme from '../Theme.js';
 
@@ -33,66 +40,199 @@ const AppBar = (props) => (
 
 const today = new Date();
 
-// Grid setup
-const columns = {
-  small: ["320px"],
-  medium: ["360px", "360px"],
-  large: ["525px", "525px", "525px"],
-  xlarge: ["525px", "525px", "525px"]
+// **************************
+//         PROJECTS
+// **************************
+
+// // F8Neb
+const F8Neb = [
+  {
+    src: 'https://login.studiofirefly.com/img/F8Neb/Setup-Neb.jpg',
+    // src: 'https://images.unsplash.com/photo-1590594839482-c4036b2892e4',
+    
+    width: 3264,
+    height: 2448
+  },
+  {
+    src: "https://login.studiofirefly.com/img/F8Neb/IMG_2378.jpg",
+    width: 2248,
+    height: 3264
+  },
+  {
+    src: "https://login.studiofirefly.com/img/F8Neb/F8NebFeatured.jpg",
+    width: 1153,
+    height: 1074
+  }
+];
+
+// // SLSphere
+const SLSphere = [
+  {
+    src: 'https://login.studiofirefly.com/img/SLSphere/Projection-Study.jpg',
+    width: 1330,
+    height: 998
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SLSphere/Beams-and-Rig.jpg",
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SLSphere/Blocks.jpg",
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: 'https://login.studiofirefly.com/img/SLSphere/sphere_exterior.jpg',
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SLSphere/sphere_model.jpg",
+    width: 810,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SLSphere/Shadow-Man.jpg",
+    width: 1440,
+    height: 1080
+  }
+];
+
+// // TOTO
+const TOTO = [
+  {
+    src: "https://login.studiofirefly.com/img/TOTO/main.jpg",
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: 'https://login.studiofirefly.com/img/TOTO/character.jpg',
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/TOTO/edit.jpg",
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: 'https://login.studiofirefly.com/img/TOTO/prototype.jpg',
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/TOTO/rpi.jpg",
+    width: 1,
+    height: 1
+  },
+  {
+    src: "https://login.studiofirefly.com/img/TOTO/shiz_box.jpg",
+    width: 1,
+    height: 1
+  }
+];
+
+// // BMW
+const BMW = [
+  {
+    src: "https://login.studiofirefly.com/img/BMW/model.jpg",
+    width: 1330,
+    height: 998
+  },
+  {
+    src: 'https://login.studiofirefly.com/img/BMW/screen_build.jpg',
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/BMW/party.jpg",
+    width: 1440,
+    height: 1080
+  }
+];
+
+// // Autodesk
+const Autodesk = [
+  {
+    src: 'https://login.studiofirefly.com/img/Autodesk/bruce.jpg',
+    width: 3647,
+    height: 2735
+  },
+  {
+    src: "https://login.studiofirefly.com/img/Autodesk/printer.jpg",
+    width: 1440,
+    height: 1080
+  },
+  {
+    src: "https://login.studiofirefly.com/img/Autodesk/breakthru.jpg",
+    width: 1440,
+    height: 1080
+  }
+];
+
+// // SAP
+const SAP = [
+  {
+    src: 'https://login.studiofirefly.com/img/SAP/gauntlets.jpg',
+    width: 2016,
+    height: 1512
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SAP/demo_space.jpg",
+    width: 2016,
+    height: 1512
+  },
+  {
+    src: "https://login.studiofirefly.com/img/SAP/dancer.jpg",
+    width: 1036,
+    height: 988
+  },
+];
+
+function columns(containerWidth) {
+  let columns = 1;
+  if (containerWidth >= 500) columns = 1;
+  if (containerWidth >= 900) columns = 2;
+  if (containerWidth >= 1500) columns = 3;
+  return columns;
+}
+
+// Footer Grid setup
+const columnsFooter = {
+  small: ["small"],
+  medium: ["auto", "auto", "auto"],
+  large: ["auto", "auto", "auto"],
+  xlarge: ["auto", "auto", "auto"]
 };
-const rows = {
-  small: ["auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto", "auto"],
-  medium: ["auto", "auto", "auto", "auto", "auto"],
-  large: ["auto", "auto", "auto", "auto"],
-  xlarge: ["auto", "auto", "auto", "auto"]
+const rowsFooter = {
+  small: ["xxsmall", "xxsmall", "xxsmall"],
+  medium: ["xxsmall"],
+  large: ["xxsmall"],
+  xlarge: ["xxsmall"]
 };
 const areas = {
   small: [
     { name: "one", start: [0, 0], end: [0, 0] },
     { name: "two", start: [0, 1], end: [0, 1] },
-    { name: "three", start: [0, 2], end: [0, 2] },
-    { name: "four", start: [0, 3], end: [0, 3] },
-    { name: "five", start: [0, 4], end: [0, 4] },
-    { name: "six", start: [0, 5], end: [0, 5] },
-    { name: "seven", start: [0, 6], end: [0, 6] },
-    { name: "eight", start: [0, 7], end: [0, 7] },
-    { name: "nine", start: [0, 8], end: [0, 8] }
+    { name: "three", start: [0, 2], end: [0, 2] }
   ],
   medium: [
     { name: "one", start: [0, 0], end: [0, 0] },
     { name: "two", start: [1, 0], end: [1, 0] },
-    { name: "three", start: [0, 1], end: [0, 1] },
-    { name: "four", start: [1, 1], end: [1, 1] },
-    { name: "five", start: [0, 2], end: [0, 2] },
-    { name: "six", start: [1, 2], end: [1, 2] },
-    { name: "seven", start: [0, 3], end: [0, 3] },
-    { name: "eight", start: [1, 3], end: [1, 3] },
-    { name: "nine", start: [0, 4], end: [0, 4] }
+    { name: "three", start: [2, 0], end: [2, 0] }
   ],
   large: [
-    { name: "one", start: [1, 0], end: [2, 0] },
-    { name: "two", start: [3, 0], end: [4, 0] },
-    { name: "three", start: [1, 1], end: [2, 1] },
-    { name: "four", start: [3, 1], end: [4, 1] },
-    { name: "five", start: [0, 2], end: [1, 2] },
-    { name: "six", start: [2, 2], end: [3, 2] },
-    { name: "seven", start: [4, 2], end: [5, 2] },
-    { name: "eight", start: [1, 3], end: [2, 3] },
-    { name: "nine", start: [3, 3], end: [4, 3] }
+    { name: "one", start: [0, 0], end: [0, 0] },
+    { name: "two", start: [1, 0], end: [1, 0] },
+    { name: "three", start: [2, 0], end: [2, 0] }
   ],
   xlarge: [
     { name: "one", start: [0, 0], end: [0, 0] },
     { name: "two", start: [1, 0], end: [1, 0] },
-    { name: "three", start: [0, 1], end: [0, 1] },
-    { name: "four", start: [1, 1], end: [1, 1] },
-    { name: "five", start: [0, 2], end: [0, 2] },
-    { name: "six", start: [1, 2], end: [1, 2] },
-    { name: "seven", start: [1, 1], end: [1, 1] },
-    { name: "eight", start: [0, 2], end: [0, 2] },
-    { name: "nine", start: [1, 2], end: [1, 2] }
+    { name: "three", start: [2, 0], end: [2, 0] }
   ]
 };
-
 const ResponsiveGrid = ({
   children,
   overrideColumns,
@@ -103,17 +243,17 @@ const ResponsiveGrid = ({
   <ResponsiveContext.Consumer>
     {size => {
       // take into consideration if not array is sent but a simple string
-      let columnsVal = columns;
-      if (columns) {
-        if (columns[size]) {
-          columnsVal = columns[size];
+      let columnsVal = columnsFooter;
+      if (columnsFooter) {
+        if (columnsFooter[size]) {
+          columnsVal = columnsFooter[size];
         }
       }
 
-      let rowsVal = rows;
-      if (rows) {
-        if (rows[size]) {
-          rowsVal = rows[size];
+      let rowsVal = rowsFooter;
+      if (rowsFooter) {
+        if (rowsFooter[size]) {
+          rowsVal = rowsFooter[size];
         }
       }
 
@@ -135,152 +275,8 @@ const ResponsiveGrid = ({
   </ResponsiveContext.Consumer>
 );
 
-// **************************
-//         PROJECTS
-// **************************
-
-// F8Neb
-const F8Neb = [
-  "Setup-Neb",
-  "IMG_2378",
-  "F8NebFeatured"
-];
-const F8NebGrid = F8Neb.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={fileName}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/F8Neb/'+fileName+'.jpg')} />
-  </Box>
-));
-
-// SLSphere
-const SLSphere = [
-  "Projection-Study",
-  "Beams-and-Rig",
-  "Blocks",
-  "sphere_exterior",
-  "sphere_model",
-  "Shadow-Man"
-];
-const SLSphereGrid = SLSphere.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={SLSphere}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/SLSphere/'+fileName+'.jpg')} />
-  </Box>
-));
-
-// TOTO
-const TOTO = [
-  "character",
-  "edit",
-  "main",
-  "prototype",
-  "rpi",
-  "shiz_box"
-];
-const TOTOGrid = TOTO.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={TOTO}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/TOTO/'+fileName+'.jpg')} />
-  </Box>
-));
-
-// BMW
-const BMW = [
-  "screen_build",
-  "model",
-  "party"
-];
-const BMWGrid = BMW.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={BMW}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/BMW/'+fileName+'.jpg')} />
-  </Box>
-));
-
-// Autodesk
-const Autodesk = [
-  "bruce",
-  "printer",
-  "breakthru"
-];
-const AutodeskGrid = Autodesk.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={Autodesk}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/Autodesk/'+fileName+'.jpg')} />
-  </Box>
-));
-
-// SAP
-const SAP = [
-  "gauntlets",
-  "demo_space",
-  "dancer"
-];
-const SAPGrid = SAP.map(fileName => (
-  <Box primary
-  flex={true}
-  height="large" width="large"
-    elevation="none"
-    key={SAP}
-    background="background-back"
-    flex={false}
-    justify="center"
-    align="center"
-  >
-    {/* <Heading level={2}>{memberName}</Heading> */}
-    <Image fit='contain' src={require('../img/projects/SAP/'+fileName+'.jpg')} />
-  </Box>
-));
-
-
-
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <Grommet theme={SFFtheme} themeMode={isDark ? 'light' : 'dark'} full={true}>
@@ -289,10 +285,7 @@ function App() {
       <Box primary fill={true}>
         <AppBar primary>
           <Heading level='3' margin='none'></Heading>
-          <Button secondary
-            icon={<Menu />}
-            onClick={() => setShowSidebar(!showSidebar)}
-          />
+          <Anchor onClick={() => setShowSidebar(!showSidebar)} icon={<Menu />}　hoverColor="#ff00ff" />
         </AppBar>
         <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }}>
           <Box primary flex align='center' justify='center' background='background-back'>
@@ -325,7 +318,7 @@ function App() {
               <Box primary
                 flex={false}
                 // border={{ color: 'blue' }}
-                width={{ min: '320px', max: '750px' }}
+                width="large"
                 // background='red'
               >
                 
@@ -334,11 +327,8 @@ function App() {
                 </Anchor>
 
                 <Paragraph size='large' fill={true} margin={{ vertical: 'none' }}>
-                  <h3 margin="none">Here is a small sampling of some of the work we are proud of.</h3>
+                  <h3 margin="none">Here is a small sampling of some of the work we are proud of</h3>
                 </Paragraph>
-
-                {/* <Image fit='contain' src={require('../img/team/Lisa.jpg')} /> */}
-                {/* <Image fit='contain' src={ethan} /> */}
 
               </Box> 
 
@@ -346,87 +336,147 @@ function App() {
                 <Image fit='contain' src={ethan} />
                 </Box> */}
               <Box primary
-                // flex={false}
-                // border={{ color: '#00ffff' }}
-                
-                // style={{width:'100%', height:20}}/>
+                // flex={true}
+                width='100%'
               >
                 
-                <Heading level={2}>F8 Projection Mapping</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {F8NebGrid}
-                </ResponsiveGrid>
-
-                <Heading level={2}>Silver Legacy Projection Mapping</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {SLSphereGrid}
-                </ResponsiveGrid>
-
-                <Heading level={2}>SAP Interactive Experience</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {SAPGrid}
-                </ResponsiveGrid>
-
-                <Heading level={2}>BMW Projection Mapping</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {BMWGrid}
-                </ResponsiveGrid>
-
-                <Heading level={2}>TOTO Wonderbox</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {TOTOGrid}
-                </ResponsiveGrid>
-
-                <Heading level={2}>Autodesk Projection Mapping</Heading>
-                <ResponsiveGrid
-                  gap="small"
-                  margin="medium"
-                  columns="medium"
-                  rows="xsmall"
-                >
-                  {AutodeskGrid}
-                </ResponsiveGrid>
-
                 
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>F8 Projection Mapping</Heading>
+                </Box>
+                <Gallery photos={F8Neb} direction="column" columns={columns}/>
 
-              </Box>
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>Silver Legacy Projection Mapping</Heading>
+                </Box>
+                <Gallery photos={SLSphere} direction="column" columns={columns}/>
+                
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>SAP Interactive Experience</Heading>
+                </Box>
+                <Gallery photos={SAP} direction="column" columns={columns}/>
+
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>BMW Projection Mapping</Heading>
+                </Box>
+                <Gallery photos={BMW} direction="column" columns={columns}/>
+
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>TOTO Wonderbox</Heading>
+                </Box>
+                <Gallery photos={TOTO} direction="column" columns={columns}/>
+
+                <Box primary
+                flex={false}
+                alignSelf="center"
+                width="large"
+                height="xsmall"
+                margin={{top: "50px"}}
+                >
+                  <Heading level={1}>Autodesk Projection Mapping</Heading>
+                </Box>
+                <Gallery photos={Autodesk} direction="column" columns={columns}/>
+
+                <Box primary ///*** FOOTER */
+                flex={false}
+                // border={{ color: 'blue' }}
+                alignSelf="center"
+                width="750px"
+                margin={{top: "50px"}}
+                >
+                    <Box primary  >
+                        <ResponsiveGrid primary
+                        rows={rowsFooter}
+                        columns={columnsFooter}
+                        gap="small"
+                        areas={areas}
+                        margin={{ horizontal: 'none', vertical: 'medium' }}
+                        >
+                            <Box primary
+                                gridArea="one"
+                                // background="black"
+                                border='left'{...{ color: 'light-1' }}
+                                justify="center"
+                                // align="left"
+                                pad={{ horizontal: 'small', vertical: 'small' }}
+                            >
+                                <Anchor hoverColor="#007fff" href="https://goo.gl/maps/59mHnN4Bp3soz3Hb8">
+                                480 Gate 5 Road #104<br></br>
+                                Sausalito, CA 94965
+                                </Anchor>
+                            </Box>
+                            <Box primary
+                                gridArea="two"
+                                // background="black"
+                                border='left'{...{ color: 'neutral-3' }}
+                                justify="center"
+                                // align="left"
+                                pad={{ horizontal: 'small', vertical: 'small' }}
+                            >
+                                <Anchor hoverColor="#ff7f00" href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
+                                <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
+                            </Box>
+                            <Box primary
+                                gridArea="three"
+                                // background="black"
+                                border='left'{...{ color: '#ffffff' }}
+                                justify="center"
+                                // align="left"
+                                pad={{ horizontal: 'small', vertical: 'small' }}
+                            >
+                                <Nav primary direction="row" background="background-back" pad="none" gap="none">
+                                    <Anchor href="http://instagram.com/bystudiofirefly" icon={<Instagram />}　hoverColor="#ff00ff" />
+                                    <Anchor href="http://facebook.com/bystudiofirefly" icon={<Facebook />} hoverColor="#ff00ff"　/>
+                                    <Anchor href="http://linkedin.com/company/studiofirefly" icon={<Linkedin />} hoverColor="#ff00ff" />
+                                </Nav>
+                            </Box>
+                        </ResponsiveGrid>
+                        <Footer primary justify="center" pad={{top: "30px", bottom: "15px"}}>
+                            <Text background="red" size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
+                        </Footer>
+                    </Box>
+                </Box>  
+                 {/* END FOOTER  */}
+
+              </Box> 
                 
             </Box> 
             
               </Box>
             </Box>
 
-            <Footer primary background="background-back" pad="medium">
-
-              <Text size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
-              {/* <Anchor size='xsmall' label="About" /> */}
-            </Footer>
-          </Box>
+            <Footer primary background="background-back" pad="18px"></Footer>
+            </Box>
 
           {(!showSidebar || size !== 'small') ? (
             <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar}>
@@ -440,7 +490,7 @@ function App() {
               justify='start'
             >
               <Nav primary background="background-back"  gap="small">
-                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                <Anchor hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                 <Anchor hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
               </Nav>
@@ -467,7 +517,7 @@ function App() {
                 justify='start'
               >
                 <Nav align='start' primary background="background-back"  gap="xlarge">
-                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="About" >About</Anchor>
+                  <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" >Home</Anchor>
                   <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects">Projects</Anchor>
                   <Anchor margin={{ vertical: 'large' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team">Team</Anchor>
                 </Nav>
