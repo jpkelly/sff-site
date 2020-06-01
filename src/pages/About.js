@@ -305,7 +305,7 @@ function App() {
                       >
                         <Box primary 
                         >
-                          <Image fit="contain" src={ require('../img/team/Lisa.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Lisa.jpg' } />
                           
                         </Box>
                         <Box primary
@@ -354,7 +354,7 @@ function App() {
                       >
                         <Box primary 
                         >
-                          <Image fit="contain" src={ require('../img/team/Ethan.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Ethan.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -402,7 +402,7 @@ function App() {
                         <Box primary 
                         // background='redark-1d'
                         >
-                          <Image fit="contain" src={ require('../img/team/Sully.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Sully.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -438,7 +438,7 @@ function App() {
                         <Box primary 
                         // background='dark-1'
                         >
-                          <Image fit="contain" src={ require('../img/team/Reba.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Reba.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -474,7 +474,7 @@ function App() {
                         <Box primary 
                         // background='dark-1'
                         >
-                          <Image fit="contain" src={ require('../img/team/Robin.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Robin.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -510,7 +510,7 @@ function App() {
                         <Box primary 
                         // background='redark-1d'
                         >
-                          <Image fit="contain" src={ require('../img/team/Claudia.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Claudia.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -547,7 +547,7 @@ function App() {
                         <Box primary 
                         // background='dark-1'
                         >
-                          <Image fit="contain" src={ require('../img/team/Julie.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Julie.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -583,7 +583,7 @@ function App() {
                         <Box primary 
                         // background="dark-1"
                         >
-                          <Image fit="contain" src={ require('../img/team/Paris.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Paris.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}
@@ -619,7 +619,7 @@ function App() {
                         <Box primary 
                         // background='dark-1'
                         >
-                          <Image fit="contain" src={ require('../img/team/Natalie.jpg')} />
+                          <Image fit="contain" src={ '/img/team/Natalie.jpg' } />
                         </Box>
                         <Box primary
                         flex={false}

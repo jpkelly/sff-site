@@ -11,7 +11,7 @@ import { FormClose, Menu, Facebook, Instagram, Linkedin  } from 'grommet-icons';
 // import { Link } from "react-router-dom";
 
 import Gallery from 'react-photo-gallery';
-// import { photos } from "https://login.studiofirefly.com/img/F8Neb";
+// import { photos } from "/img/projects/F8Neb";
 
 /* popout the browser and maximize to see more rows! -> */
 // const BasicRows = () => <Gallery photos={photos} />;
@@ -19,8 +19,8 @@ import Gallery from 'react-photo-gallery';
 import '../App.css';
 import logo from '../sfflogo.svg';
 
-// import lisa from 'https://login.studiofirefly.com/img/team/Lisa.jpg';
-// import ethan from 'https://login.studiofirefly.com/img/team/Ethan.jpg';
+// import lisa from '/img/projects/team/Lisa.jpg';
+// import ethan from '/img/projects/team/Ethan.jpg';
 
 import SFFtheme from '../Theme.js';
 
@@ -47,19 +47,19 @@ const today = new Date();
 // // F8Neb
 const F8Neb = [
   {
-    src: 'https://login.studiofirefly.com/img/F8Neb/Setup-Neb.jpg',
+    src: '/img/projects/F8Neb/Setup-Neb.jpg',
     // src: 'https://images.unsplash.com/photo-1590594839482-c4036b2892e4',
     
     width: 3264,
     height: 2448
   },
   {
-    src: "https://login.studiofirefly.com/img/F8Neb/IMG_2378.jpg",
+    src: "/img/projects/F8Neb/IMG_2378.jpg",
     width: 2248,
     height: 3264
   },
   {
-    src: "https://login.studiofirefly.com/img/F8Neb/F8NebFeatured.jpg",
+    src: "/img/projects/F8Neb/F8NebFeatured.jpg",
     width: 1153,
     height: 1074
   }
@@ -68,32 +68,32 @@ const F8Neb = [
 // // SLSphere
 const SLSphere = [
   {
-    src: 'https://login.studiofirefly.com/img/SLSphere/Projection-Study.jpg',
+    src: '/img/projects/SLSphere/Projection-Study.jpg',
     width: 1330,
     height: 998
   },
   {
-    src: "https://login.studiofirefly.com/img/SLSphere/Beams-and-Rig.jpg",
+    src: "/img/projects/SLSphere/Beams-and-Rig.jpg",
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/SLSphere/Blocks.jpg",
+    src: "/img/projects/SLSphere/Blocks.jpg",
     width: 1440,
     height: 1080
   },
   {
-    src: 'https://login.studiofirefly.com/img/SLSphere/sphere_exterior.jpg',
+    src: '/img/projects/SLSphere/sphere_exterior.jpg',
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/SLSphere/sphere_model.jpg",
+    src: "/img/projects/SLSphere/sphere_model.jpg",
     width: 810,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/SLSphere/Shadow-Man.jpg",
+    src: "/img/projects/SLSphere/Shadow-Man.jpg",
     width: 1440,
     height: 1080
   }
@@ -102,32 +102,32 @@ const SLSphere = [
 // // TOTO
 const TOTO = [
   {
-    src: "https://login.studiofirefly.com/img/TOTO/main.jpg",
+    src: "/img/projects/TOTO/main.jpg",
     width: 1440,
     height: 1080
   },
   {
-    src: 'https://login.studiofirefly.com/img/TOTO/character.jpg',
+    src: '/img/projects/TOTO/character.jpg',
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/TOTO/edit.jpg",
+    src: "/img/projects/TOTO/edit.jpg",
     width: 1440,
     height: 1080
   },
   {
-    src: 'https://login.studiofirefly.com/img/TOTO/prototype.jpg',
+    src: '/img/projects/TOTO/prototype.jpg',
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/TOTO/rpi.jpg",
+    src: "/img/projects/TOTO/rpi.jpg",
     width: 1,
     height: 1
   },
   {
-    src: "https://login.studiofirefly.com/img/TOTO/shiz_box.jpg",
+    src: "/img/projects/TOTO/shiz_box.jpg",
     width: 1,
     height: 1
   }
@@ -136,17 +136,17 @@ const TOTO = [
 // // BMW
 const BMW = [
   {
-    src: "https://login.studiofirefly.com/img/BMW/model.jpg",
+    src: "/img/projects/BMW/model.jpg",
     width: 1330,
     height: 998
   },
   {
-    src: 'https://login.studiofirefly.com/img/BMW/screen_build.jpg',
+    src: '/img/projects/BMW/screen_build.jpg',
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/BMW/party.jpg",
+    src: "/img/projects/BMW/party.jpg",
     width: 1440,
     height: 1080
   }
@@ -155,17 +155,17 @@ const BMW = [
 // // Autodesk
 const Autodesk = [
   {
-    src: 'https://login.studiofirefly.com/img/Autodesk/bruce.jpg',
+    src: '/img/projects/Autodesk/bruce.jpg',
     width: 3647,
     height: 2735
   },
   {
-    src: "https://login.studiofirefly.com/img/Autodesk/printer.jpg",
+    src: "/img/projects/Autodesk/printer.jpg",
     width: 1440,
     height: 1080
   },
   {
-    src: "https://login.studiofirefly.com/img/Autodesk/breakthru.jpg",
+    src: "/img/projects/Autodesk/breakthru.jpg",
     width: 1440,
     height: 1080
   }
@@ -174,17 +174,17 @@ const Autodesk = [
 // // SAP
 const SAP = [
   {
-    src: 'https://login.studiofirefly.com/img/SAP/gauntlets.jpg',
+    src: '/img/projects/SAP/gauntlets.jpg',
     width: 2016,
     height: 1512
   },
   {
-    src: "https://login.studiofirefly.com/img/SAP/demo_space.jpg",
+    src: "/img/projects/SAP/demo_space.jpg",
     width: 2016,
     height: 1512
   },
   {
-    src: "https://login.studiofirefly.com/img/SAP/dancer.jpg",
+    src: "/img/projects/SAP/dancer.jpg",
     width: 1036,
     height: 988
   },
