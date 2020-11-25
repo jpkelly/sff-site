@@ -1,7 +1,19 @@
-import React, { useState, useRef } from "react";
-import { Grommet, Box, Collapsible, Heading, ResponsiveContext, Layer, Paragraph, Footer, Grid, Nav, Image } from 'grommet';
-import { Text } from "../components/Text";
-import { Anchor } from "../components/Anchor";
+import React, { useState, useRef } from 'react';
+import {
+  Grommet,
+  Box,
+  Collapsible,
+  Heading,
+  ResponsiveContext,
+  Layer,
+  Paragraph,
+  Footer,
+  Grid,
+  Nav,
+  Image
+} from 'grommet';
+import { Text } from '../components/Text';
+import { Anchor } from '../components/Anchor';
 // import Particles from 'react-particles-js';
 // import { normalizeColor } from 'grommet/utils';
 // import { rgba } from 'polished';
@@ -9,9 +21,11 @@ import { Menu, Facebook, Instagram, Linkedin } from 'grommet-icons';
 // import { ThemeProvider } from 'styled-components';
 // import { deepMerge } from "grommet/utils";
 // import { Link } from "react-router-dom";
-import Vimeo from '@u-wave/react-vimeo'
+import Vimeo from '@u-wave/react-vimeo';
 // import YouTube from '@u-wave/react-youtube';
 // import ReactPlayer from 'react-player'
+import Gallery from 'react-photo-gallery';
+import { logoGallery, columnsLogos } from '../components/Logos';
 
 import '../App.css';
 import logo from '../sfflogo.png';
@@ -33,15 +47,15 @@ import SFFtheme from '../Theme.js';
 //   }
 // }
 
-const AppBar = (props) => (
+const AppBar = props => (
   <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
+    tag="header"
+    direction="row"
+    align="center"
+    justify="between"
     // background='red'
     pad={{ left: 'medium', right: 'small', vertical: 'none' }}
-    elevation='none'
+    elevation="none"
     style={{ zIndex: '1' }}
     {...props}
   />
@@ -152,92 +166,85 @@ const today = new Date();
 //     </ResponsiveContext.Consumer>
 //   );
 
-// *****************    
+// *****************
 // Footer Grid setup
 // *****************
 const columnsFooter = {
-  small: ["auto"],
-  medium: ["auto", "auto", "auto"],
-  large: ["auto", "auto", "auto"],
-  xlarge: ["auto", "auto", "auto"]
+  small: ['auto'],
+  medium: ['auto', 'auto', 'auto'],
+  large: ['auto', 'auto', 'auto'],
+  xlarge: ['auto', 'auto', 'auto']
 };
 const rowsFooter = {
-  small: ["xxsmall", "xxsmall", "xxsmall"],
-  medium: ["xxsmall"],
-  large: ["xxsmall"],
-  xlarge: ["xxsmall"]
+  small: ['xxsmall', 'xxsmall', 'xxsmall'],
+  medium: ['xxsmall'],
+  large: ['xxsmall'],
+  xlarge: ['xxsmall']
 };
 const areasFooter = {
   small: [
-    { name: "address", start: [0, 0], end: [0, 0] },
-    { name: "contact", start: [0, 1], end: [0, 1] },
-    { name: "social", start: [0, 2], end: [0, 2] }
+    { name: 'address', start: [0, 0], end: [0, 0] },
+    { name: 'contact', start: [0, 1], end: [0, 1] },
+    { name: 'social', start: [0, 2], end: [0, 2] }
   ],
   medium: [
-    { name: "address", start: [0, 0], end: [0, 0] },
-    { name: "contact", start: [1, 0], end: [1, 0] },
-    { name: "social", start: [2, 0], end: [2, 0] }
+    { name: 'address', start: [0, 0], end: [0, 0] },
+    { name: 'contact', start: [1, 0], end: [1, 0] },
+    { name: 'social', start: [2, 0], end: [2, 0] }
   ],
   large: [
-    { name: "address", start: [0, 0], end: [0, 0] },
-    { name: "contact", start: [1, 0], end: [1, 0] },
-    { name: "social", start: [2, 0], end: [2, 0] }
+    { name: 'address', start: [0, 0], end: [0, 0] },
+    { name: 'contact', start: [1, 0], end: [1, 0] },
+    { name: 'social', start: [2, 0], end: [2, 0] }
   ],
   xlarge: [
-    { name: "address", start: [0, 0], end: [0, 0] },
-    { name: "contact", start: [1, 0], end: [1, 0] },
-    { name: "social", start: [2, 0], end: [2, 0] }
+    { name: 'address', start: [0, 0], end: [0, 0] },
+    { name: 'contact', start: [1, 0], end: [1, 0] },
+    { name: 'social', start: [2, 0], end: [2, 0] }
   ]
 };
-const ResponsiveGridFooter = ({
-  children,
-  overrideColumns,
-  overrideRows,
-  areas,
-  ...props
-}) => (
-    <ResponsiveContext.Consumer>
-      {size => {
-        // take into consideration if not array is sent but a simple string
-        let columnsVal = columnsFooter;
-        if (columnsFooter) {
-          if (columnsFooter[size]) {
-            columnsVal = columnsFooter[size];
-          }
+const ResponsiveGridFooter = ({ children, overrideColumns, overrideRows, areas, ...props }) => (
+  <ResponsiveContext.Consumer>
+    {size => {
+      // take into consideration if not array is sent but a simple string
+      let columnsVal = columnsFooter;
+      if (columnsFooter) {
+        if (columnsFooter[size]) {
+          columnsVal = columnsFooter[size];
         }
+      }
 
-        let rowsVal = rowsFooter;
-        if (rowsFooter) {
-          if (rowsFooter[size]) {
-            rowsVal = rowsFooter[size];
-          }
+      let rowsVal = rowsFooter;
+      if (rowsFooter) {
+        if (rowsFooter[size]) {
+          rowsVal = rowsFooter[size];
         }
+      }
 
-        // also if areas is a simple array not an object of arrays for different sizes
-        let areasVal = areasFooter;
-        if (areasFooter && !Array.isArray(areasFooter)) areasVal = areasFooter[size];
+      // also if areas is a simple array not an object of arrays for different sizes
+      let areasVal = areasFooter;
+      if (areasFooter && !Array.isArray(areasFooter)) areasVal = areasFooter[size];
 
-        return (
-          <Grid
-            {...props}
-            areas={!areasVal ? undefined : areasVal}
-            rows={!rowsVal ? size : rowsVal}
-            columns={!columnsVal ? size : columnsVal}
-          >
-            {children}
-          </Grid>
-        );
-      }}
-    </ResponsiveContext.Consumer>
-  );
+      return (
+        <Grid
+          {...props}
+          areas={!areasVal ? undefined : areasVal}
+          rows={!rowsVal ? size : rowsVal}
+          columns={!columnsVal ? size : columnsVal}
+        >
+          {children}
+        </Grid>
+      );
+    }}
+  </ResponsiveContext.Consumer>
+);
 
 function App() {
-
-  const [showBurger, setShowBurger] = React.useState(true)
+  const [showBurger, setShowBurger] = React.useState(true);
   const onClick = () => {
-    setShowSidebar(!showSidebar)
-    setShowBurger(false)
-  }
+    setShowSidebar(!showSidebar);
+    setShowBurger(false);
+  };
   const BurgerLayer = () => {
     console.log(borderBoxRef.current);
     return (
@@ -246,23 +253,23 @@ function App() {
         position="top-right"
         plain={true}
         modal={false}
-        animation={"fadeIn"}
+        animation={'fadeIn'}
         onClickOutside={() => setShowSidebar(!showSidebar)}
         onEsc={() => setShowSidebar(!showSidebar)}
         responsive={false}
       >
         {showBurger ? <Burger /> : null}
       </Layer>
-    )
-  }
+    );
+  };
   const Burger = () => (
-    <div className='menu-wrapper'>
+    <div className="menu-wrapper">
       <Anchor onClick={onClick} icon={<Menu />} hoverColor="#ff00ff" />
     </div>
-  )
+  );
   const closeSidebar = () => {
-    setShowSidebar(!showSidebar)
-  }
+    setShowSidebar(!showSidebar);
+  };
   const borderBoxRef = useRef(null);
 
   const [isDark] = useState(false);
@@ -274,34 +281,31 @@ function App() {
         {size => (
           <Box primary fill>
             <AppBar primary>
-              <Heading level='3' margin='none'>&nbsp;</Heading>
+              <Heading level="3" margin="none">
+                &nbsp;
+              </Heading>
               {/* <Anchor onClick={() => setShowSidebar(!showSidebar)} icon={<Menu />} hoverColor="#ff00ff" /> */}
             </AppBar>
-            <Box primary direction='row' flex overflow={{ horizontal: 'hidden' }} >
-              <Box primary flex align='center' justify='center' background='background-back'>
-
-
-
-                <Box secondary
+            <Box primary direction="row" flex overflow={{ horizontal: 'hidden' }}>
+              <Box primary flex align="center" justify="center" background="background-back">
+                <Box
+                  secondary
                   // ref={ref}
                   flex={true}
-                  align='end'
-                  width='95%'
+                  align="end"
+                  width="95%"
                   pad={{ horizontal: '2px', vertical: '2px' }}
-                  background='url(/img/gradient.png)'
+                  background="url(/img/gradient.png)"
                 >
-
-                  <Box primary
+                  <Box
+                    primary
                     ref={borderBoxRef}
                     flex={true}
                     // border={{ color: 'red' }}
-                    align='end'
-                    width='100%'
-                    background='none'
+                    align="end"
+                    width="100%"
+                    background="none"
                   >
-
-
-
                     {/* <Layer
                       // className='particles'
                       full={true}
@@ -371,48 +375,55 @@ function App() {
 
                     <BurgerLayer />
                     {/* <Button width="xlarge" onClick={()=> console.log(borderBoxRef)}>Click</Button> */}
-                    <Box primary // MAIN CONTENT BOX
+                    <Box
+                      primary // MAIN CONTENT BOX
                       flex={true}
                       // border={{ color: 'green' }}
-                      align='end'
-                      width='100%'
+                      align="end"
+                      width="100%"
                       overflow={{ horizontal: 'hidden' }}
                       // pad={{ horizontal: '15px' }}
                       pad={{ horizontal: 'xlarge' }}
-                      background='black'
+                      background="black"
                     >
-
-
-
-
-
-                      <Box primary
+                      <Box
+                        primary
                         // border={{ color: 'yellow' }}
                         // align='left'
                         // width={{ min: '200px', max: '750px' }}
-                        width='100%'
+                        width="100%"
 
-                      // background='green'
+                        // background='green'
                       >
-
-
-                        <Box primary
+                        <Box
+                          primary
                           width="auto"
-                          align='center'
+                          align="center"
                           flex={false}
-                        // border={{ color: 'green' }}
+                          // border={{ color: 'green' }}
                         >
-                          <div className='logo-wrapper'>
-                          <Anchor href="https://www.studiofirefly.com">
-                            <img src={logo} className="logo-image" alt="Logo" />
-                          </Anchor>
+                          <div className="logo-wrapper">
+                            <Anchor href="https://www.studiofirefly.com">
+                              <img src={logo} className="logo-image" alt="Logo" />
+                            </Anchor>
                           </div>
                         </Box>
 
+                        <Paragraph
+                          size="large"
+                          fill={false}
+                          alignSelf="center"
+                          margin={{ vertical: 'none' }}
+                          responsive={true}
+                        >
+                          <h3 margin="none">
+                            We have a passion for creating shared audience and brand experiences —
+                            anywhere, and in any format, be it live, virtual, or blended/hybrid.
+                          </h3>
+                        </Paragraph>
 
-
-
-                        <Box primary
+                        <Box
+                          primary
                           alignSelf="center"
                           width="xlarge"
                           // height="large"
@@ -421,7 +432,7 @@ function App() {
                           margin={{ bottom: 'xlarge' }}
                         >
                           <Vimeo
-                            className='video'
+                            className="video"
                             video="https://vimeo.com/431538538/54156c0592"
                             responsive="true"
                           />
@@ -452,8 +463,8 @@ function App() {
                           </div> */}
                         </Box>
 
-
-                        <Box primary
+                        <Box
+                          primary
                           flex={false}
                           width="xlarge"
                           height="auto"
@@ -465,13 +476,37 @@ function App() {
                           </Anchor>
                         </Box>
 
-                        <Paragraph
-                          size="large"
-                          alignSelf="center"
-                          margin={{ top: 'xlarge' }}
-                        >
+                        <Paragraph size="large" alignSelf="center" margin={{ top: 'large' }}>
                           &nbsp;
                         </Paragraph>
+
+                        <Paragraph
+                          size="large"
+                          fill={false}
+                          margin={{ bottom: 'large' }}
+                          alignSelf="center"
+                        >
+                          <h3 margin="none">
+                            We decode visions, craft experiences, and deliver with precision,
+                            passion, and joy. We are world builders.
+                          </h3>
+                        </Paragraph>
+
+                        <Box
+                          primary
+                          flex={false}
+                          width="100%"
+                          height="auto"
+                          margin={{ vertical: 'xlarge' }}
+                        >
+                          <Gallery
+                            photos={logoGallery}
+                            margin="15"
+                            direction="column"
+                            columns={columnsLogos}
+                          />
+                        </Box>
+
                         {/* <Paragraph
                           size="large"
                           alignSelf="center"
@@ -485,14 +520,9 @@ function App() {
                           More coming in the next few months, with a launch and full Digital Event Experience Demo coming this July, 2020. In the meantime, here's a sneak peek at what our designers, coders, producers, and technicians have been working on:
                         </Paragraph> */}
 
-
-
-
-                        <Box primary
-                          width="large"
-                          alignSelf="center"
-                        >
-                          <ResponsiveGridFooter primary
+                        <Box primary width="large" alignSelf="center">
+                          <ResponsiveGridFooter
+                            primary
                             rows={rowsFooter}
                             columns={columnsFooter}
                             alignSelf="center"
@@ -501,32 +531,45 @@ function App() {
                             margin={{ horizontal: 'none', vertical: 'medium' }}
                           >
                             <div>
-                              <Box primary
+                              <Box
+                                primary
                                 gridArea="address"
                                 align="center"
                                 pad={{ horizontal: 'small', vertical: 'small' }}
                               >
-                                <Nav primary direction="row" background="none" pad="none" gap="medium">
-                                  <Anchor hoverColor="#ffffff" >Sausalito</Anchor>
-                                  <Anchor hoverColor="#ffffff" >Boston</Anchor>
-                                  <Anchor hoverColor="#ffffff" >Barcelona</Anchor>
+                                <Nav
+                                  primary
+                                  direction="row"
+                                  background="none"
+                                  pad="none"
+                                  gap="medium"
+                                >
+                                  <Anchor hoverColor="#ffffff">Sausalito</Anchor>
+                                  <Anchor hoverColor="#ffffff">Boston</Anchor>
+                                  {/* <Anchor hoverColor="#ffffff" >Barcelona</Anchor> */}
                                 </Nav>
                               </Box>
                             </div>
-                            <div className='footer-wrapper'>
-                              <Box primary
+                            <div className="footer-wrapper">
+                              <Box
+                                primary
                                 gridArea="contact"
                                 // border='left'{...{ color: 'neutral-3' }}
                                 align="center"
                                 // align="left"
                                 pad={{ horizontal: 'small', vertical: 'none' }}
                               >
-                                <Anchor hoverColor="#ff7f00" href="tel:415-944-2286"><strong>+1.415.944.2286</strong></Anchor>
-                                <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com"><strong>studio@studiofirefly.com</strong></Anchor>
+                                <Anchor hoverColor="#ff7f00" href="tel:415-944-2286">
+                                  <strong>+1.415.944.2286</strong>
+                                </Anchor>
+                                <Anchor hoverColor="#ff00ff" href="mailto:studio@studiofirefly.com">
+                                  <strong>studio@studiofirefly.com</strong>
+                                </Anchor>
                               </Box>
                             </div>
                             <div>
-                              <Box primary
+                              <Box
+                                primary
                                 gridArea="social"
                                 // background="black"
                                 // border='left'{...{ color: '#ffffff' }}
@@ -534,78 +577,129 @@ function App() {
                                 // align="left"
                                 pad={{ horizontal: 'none', vertical: 'none' }}
                               >
-                                <Nav primary direction="row" background="none" pad="none" gap="none">
-                                  <Anchor href="http://instagram.com/bystudiofirefly" icon={<Instagram />} hoverColor="#ff00ff" />
-                                  <Anchor href="http://facebook.com/bystudiofirefly" icon={<Facebook />} hoverColor="#ff00ff" />
-                                  <Anchor href="http://linkedin.com/company/studiofirefly" icon={<Linkedin />} hoverColor="#ff00ff" />
+                                <Nav
+                                  primary
+                                  direction="row"
+                                  background="none"
+                                  pad="none"
+                                  gap="none"
+                                >
+                                  <Anchor
+                                    href="http://instagram.com/bystudiofirefly"
+                                    icon={<Instagram />}
+                                    hoverColor="#ff00ff"
+                                  />
+                                  <Anchor
+                                    href="http://facebook.com/bystudiofirefly"
+                                    icon={<Facebook />}
+                                    hoverColor="#ff00ff"
+                                  />
+                                  <Anchor
+                                    href="http://linkedin.com/company/studiofirefly"
+                                    icon={<Linkedin />}
+                                    hoverColor="#ff00ff"
+                                  />
                                 </Nav>
                               </Box>
                             </div>
                           </ResponsiveGridFooter>
-                          <Footer primary justify="center" pad={{ top: "30px", bottom: "15px" }}>
-                            <Text background="black" size='xsmall'>Copyright &copy; {today.getFullYear()} Studio Firefly</Text>
+                          <Footer primary justify="center" pad={{ top: '30px', bottom: '15px' }}>
+                            <Text background="black" size="xsmall">
+                              Copyright &copy; {today.getFullYear()} Studio Firefly
+                            </Text>
                           </Footer>
                         </Box>
-
                       </Box>
                     </Box>
-
                   </Box>
                 </Box>
-                <Footer primary background="background-back" pad="18px">
-
-                </Footer>
+                <Footer primary background="background-back" pad="18px"></Footer>
               </Box>
 
-              {(!showSidebar || size !== 'small') ? (
-                <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar} >
-                  <Box primary
-                    className='sidebar'
+              {!showSidebar || size !== 'small' ? (
+                <Collapsible border={{ color: 'black' }} direction="horizontal" open={showSidebar}>
+                  <Box
+                    primary
+                    className="sidebar"
                     flex
-                    width='xsmall'
-                    background='background-back'
+                    width="xsmall"
+                    background="background-back"
                     border={{ style: 'hidden' }}
-                    elevation='none'
-                    align='start'
-                    justify='start'
+                    elevation="none"
+                    align="start"
+                    justify="start"
                   >
                     <Nav primary background="background-back" gap="small">
-                      <Anchor onClick={closeSidebar} hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" ></Anchor>
-                      <Anchor onClick={closeSidebar} hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects"></Anchor>
-                      <Anchor onClick={closeSidebar} hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team"></Anchor>
+                      <Anchor
+                        onClick={closeSidebar}
+                        hoverColor="#ff00ff"
+                        href="/"
+                        alignSelf="start"
+                        label="Home"
+                      ></Anchor>
+                      <Anchor
+                        onClick={closeSidebar}
+                        hoverColor="#ff00ff"
+                        href="/blm"
+                        alignSelf="start"
+                        label="BLM"
+                      ></Anchor>
+                      {/* <Anchor
+                        onClick={closeSidebar}
+                        hoverColor="#ff00ff"
+                        href="/about"
+                        alignSelf="start"
+                        label="Team"
+                      ></Anchor> */}
                     </Nav>
                   </Box>
                 </Collapsible>
               ) : (
-                  <Layer>
-                    <Box primary
-                      background='black'
-                      tag='header'
-                      justify='end'
-                      align='center'
-                      direction='row'
-                    >
-                      {/* <Anchor primary
+                <Layer>
+                  <Box
+                    primary
+                    background="black"
+                    tag="header"
+                    justify="end"
+                    align="center"
+                    direction="row"
+                  >
+                    {/* <Anchor primary
                         icon={<FormClose />}
                         onClick={onClick}
                       /> */}
-                      &nbsp;
-                    </Box>
-                    <Box primary
-                      fill
-                      background='black'
-                      align='center'
-                      justify='start'
-                    >
-                      <Nav align='center' primary background="background-back" gap="xlarge">
-                        <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/" alignSelf='start' label="Home" ></Anchor>
-                        <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/projects" alignSelf='start' label="Projects"></Anchor>
-                        <Anchor margin={{ vertical: 'medium' }} size="xxlarge" hoverColor="#ff00ff" href="/about" alignSelf='start' label="Team"></Anchor>
-                      </Nav>
-
-                    </Box>
-                  </Layer>
-                )}
+                    &nbsp;
+                  </Box>
+                  <Box primary fill background="black" align="center" justify="start">
+                    <Nav align="center" primary background="background-back" gap="xlarge">
+                      <Anchor
+                        margin={{ vertical: 'medium' }}
+                        size="xxlarge"
+                        hoverColor="#ff00ff"
+                        href="/"
+                        alignSelf="start"
+                        label="Home"
+                      ></Anchor>
+                      <Anchor
+                        margin={{ vertical: 'medium' }}
+                        size="xxlarge"
+                        hoverColor="#ff00ff"
+                        href="/blm"
+                        alignSelf="start"
+                        label="BLM"
+                      ></Anchor>
+                      {/* <Anchor
+                        margin={{ vertical: 'medium' }}
+                        size="xxlarge"
+                        hoverColor="#ff00ff"
+                        href="/about"
+                        alignSelf="start"
+                        label="Team"
+                      ></Anchor> */}
+                    </Nav>
+                  </Box>
+                </Layer>
+              )}
             </Box>
           </Box>
         )}
@@ -615,4 +709,3 @@ function App() {
 }
 
 export default App;
-

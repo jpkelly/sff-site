@@ -1,4 +1,3 @@
-
 // import React, { Component } from 'react';
 
 // import Gallery from 'react-photo-gallery';
@@ -21,332 +20,267 @@ export function columnsLogos(containerWidth) {
 
 export const logoGallery = [
   {
-    src: '/img/projects/Logos/Abbott-White-128x100.png',
+    src: '/img/logos/Appian.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Accuray-White-128x100.png',
+    src: '/img/logos/Abbott.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Adobe-White-128x100.png',
+    src: '/img/logos/Adobe.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/AmericanExpress-White-128x100.png',
+    src: '/img/logos/Aera.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Ameriprise-White-128x100.png',
+    src: '/img/logos/Apptio.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Appian-White-128x100.png',
+    src: '/img/logos/Autodesk.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Apptio-White-128x100.png',
+    src: '/img/logos/BD.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Ariba-White-128x100.png',
+    src: '/img/logos/Blackline.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Autodesk-White-128x100.png',
+    src: '/img/logos/BMW.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/BD-White-128x100.png',
+    src: '/img/logos/Caption_Health.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Blackline-White-128x100.png',
+    src: '/img/logos/Charels_Schwab.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/BMW-White-128x100.png',
+    src: '/img/logos/Chef.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/CharlesSchwab-White-128x100.png',
+    src: '/img/logos/Cisco.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Chef-White-128x100.png',
+    src: '/img/logos/Cloudability.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Chevron-White-128x100.png',
+    src: '/img/logos/Consensys.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Cisco-White-128x100.png',
+    src: '/img/logos/DocuSign.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Deckers-White-128x100.png',
+    src: '/img/logos/Ducati.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Docusign-White-128x100.png',
+    src: '/img/logos/E-Trade.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Ducati-White-128x100.png',
+    src: '/img/logos/Eloqua.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/E_Trade-White-128x100.png',
+    src: '/img/logos/Epic_Games.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Ekso-White-128x100.png',
+    src: '/img/logos/Extreme.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Eloqua-White-128x100.png',
+    src: '/img/logos/Facebook.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Enterasys-White-128x100.png',
+    src: '/img/logos/Flatiron.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Esaote-White-128x100.png',
+    src: '/img/logos/GAP.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Evariant-White-128x100.png',
+    src: '/img/logos/Genentech.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Extreme-White-128x100.png',
+    src: '/img/logos/Genesys.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Facebook-White-128x100.png',
+    src: '/img/logos/Gigamon.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/FastCompany-White-128x100.png',
+    src: '/img/logos/Hitachi.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Feverbee-White-128x100.png',
+    src: '/img/logos/Imprivata.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Flatiron-White-128x100.png',
+    src: '/img/logos/JP_Morgan.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Gap-White-128x100.png',
+    src: '/img/logos/Juniper.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Genesys-White-128x100.png',
+    src: '/img/logos/Kaiser.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Gigamon-White-128x100.png',
+    src: '/img/logos/Komatsu.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Google-White-128x100.png',
+    src: '/img/logos/LinkedIn.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Hitachi-White-128x100.png',
+    src: '/img/logos/McAfee.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Hostanalytics-White-128x100.png',
+    src: '/img/logos/McKesson.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/HP-White-128x100.png',
+    src: '/img/logos/Microsoft.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Imprivata-White-128x100.png',
+    src: '/img/logos/Mini.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Inc.-White-128x100.png',
+    src: '/img/logos/NetSuite.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Infoblox-White-128x100.png',
+    src: '/img/logos/Oculus.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Inovis-White-128x100.png',
+    src: '/img/logos/OSISoft.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Intuit-White-128x100.png',
+    src: '/img/logos/Salesforce.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/JDSU-White-128x100.png',
+    src: '/img/logos/SAP_Ariba.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/JPMorgan-White-128x100.png',
+    src: '/img/logos/SAP_SuccessFactors.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Juniper-White-128x100.png',
+    src: '/img/logos/SAP.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Kaiser-White-128x100.png',
+    src: '/img/logos/Siemens.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/LinkedIn-White-128x100.png',
+    src: '/img/logos/Silver_Legacy.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/McKesson-White-128x100.png',
+    src: '/img/logos/Skillsoft.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Microsoft-White-128x100.png',
+    src: '/img/logos/Stanford_Alumni.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Mini-White-128x100.png',
+    src: '/img/logos/TIBCO.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/PGP-White-128x100.png',
+    src: '/img/logos/UCSF.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/Phoenix-White-128x100.png',
+    src: '/img/logos/Unit4.svg',
     width: 128,
     height: 100
   },
   {
-    src: '/img/projects/Logos/PowerVision-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Salesforce-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/SAP-White-1-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Siemens-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Skillsoft-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/StanfordAlumni-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/STXFilms-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/SuccessFactors-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Tibco-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Toto-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/vmware-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/WarnerBrothers-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/Wells-Fargo-White-128x100.png',
-    width: 128,
-    height: 100
-  },
-  {
-    src: '/img/projects/Logos/World_Market-White-128x100.png',
+    src: '/img/logos/Veeva.svg',
     width: 128,
     height: 100
   }
