@@ -10,6 +10,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn deploy'
+Deploys to S3 bucket.
+Run the following to invalidate CloudFront caches.
+
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
