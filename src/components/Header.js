@@ -1,50 +1,10 @@
-import React, { useState } from "react";
-import {  Box, Button, Heading, Grommet, ResponsiveContext } from 'grommet';
-// import { normalizeColor } from 'grommet/utils';
-// import { rgba } from 'polished';
-import { Menu } from 'grommet-icons';
-// import { ThemeProvider } from 'styled-components';
-// import { deepMerge } from "grommet/utils";
-// import { Link } from "react-router-dom";
-import '../App.css';
-// import logo from '../sfflogo.svg';
+import styled from "styled-components";
+import Box from "./Box";
 
-import SFFtheme from '../Theme.js';
-
-const AppBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='black'
-    pad={{ left: 'medium', right: 'small', vertical: 'none' }}
-    elevation='medium'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-);
-
-function Header() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  return (
-    <Grommet theme={SFFtheme} full>
-    <ResponsiveContext.Consumer>
-    {size => (
-      <Box primary fill>
-        <AppBar primary>
-          <Heading level='3' margin='none'></Heading>
-          <Button secondary
-            icon={<Menu />}
-            onClick={() => setShowSidebar(!showSidebar)}
-          />
-        </AppBar>
-        
-      </Box>
-      )}
-    </ResponsiveContext.Consumer>
-    </Grommet>
-  );
-}
+const Header = styled(Box)`
+  height: 400px;
+  width: 400px;
+  background-color: #ff00ff;
+`;
 
 export default Header;

@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 .App {
   text-align: center;
 }
@@ -5,10 +9,11 @@
 .logo-image {
   padding-top: 5vmin;
   padding-bottom: 5vmin;
-  width: 60%;
+  width: 100%;
   max-width: 300px;
   animation: fade-up 0.75s ease-in 1s backwards;
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,21 +29,14 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 div {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
-div::-webkit-scrollbar { 
+
+div::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -47,4 +45,91 @@ h3 {
   line-height: 2.2rem;
   margin-top: 0;
   margin-bottom: 35px;
+}
+
+.player-wrapper-1920x1080 {
+  position: relative;
+  padding-top: 56.25%;
+  /* Player ratio: 100/(1920/1080) */
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 66.66%/* Player ratio: 100 / (1280 / 720) or 100/(1920/1280) */
+}
+
+.player-wrapper-1920x720 {
+  position: relative;
+  padding-top: 37.49%/* Player ratio: 100/(1920/720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+}
+
+.menu-wrapper {
+  position: relative;
+  top: 12px;
+  right: 0px;
+  /* background-color: red; */
+  z-index: 11;
+  /* border: 1px solid red; */
+}
+
+@media (min-width: 768px) {
+  .menu-wrapper {
+    position: relative;
+    top: 25px;
+    right: 20px;
+    /* background-color: red; */
+    z-index: 11;
+    /* border: 1px solid red; */
+  }
+}
+
+.logo-wrapper {
+  margin-top: 25px;
+  /* height: 45px;
+  border-left: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  padding: 0 10px 0 10px; */
+}
+
+@media (min-width: 768px) {
+  .logo-wrapper {
+    margin-top: 0px;
+    /* height: 45px;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    padding: 0 10px 0 10px; */
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-wrapper {
+    height: 45px;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    padding: 0 10px 0 10px;
+  }
+}
+
+.particles {
+  z-index: -10002;
+  /* border: 1px solid red; */
+}
+
+.sidebar {
+  z-index: 27;
+  /* border: 1px solid red; */
+}
+
+.video {
+  z-index: 0;
+  /* border: 1px solid red; */
 }

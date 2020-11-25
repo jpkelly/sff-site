@@ -6,7 +6,7 @@ import Content from "./components/Content";
 // import Sidebar from "./components/Sidebar";
 // import Footer from "./components/Footer";
 // import { Grommet } from "grommet";
-import { Home, About, Projects, Test } from "./pages";
+import { Home, About, Projects, BLM } from "./pages";
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
 //
@@ -33,8 +33,8 @@ export default function App() {
               <Route path="/projects">
                 <Projects />
               </Route>
-              <Route path="/test">
-                <Test />
+              <Route path="/blm">
+                <BLM />
               </Route>
             </Switch>
           </Content>
